@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mood Based Study Planner</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>📚 Mood Based Study Planner</h1>
+
+        <p>How are you feeling today?</p>
+
+        <div class="mood-container">
+
+            <button class="mood-btn" onclick="selectMood('Happy')">😊 Happy</button>
+
+            <button class="mood-btn" onclick="selectMood('Sleepy')">😴 Sleepy</button>
+
+            <button class="mood-btn" onclick="selectMood('Stressed')">😫 Stressed</button>
+
+            <button class="mood-btn" onclick="selectMood('Motivated')">🔥 Motivated</button>
+
+            <button class="mood-btn" onclick="selectMood('Sad')">😔 Sad</button>
+
+        </div>
+
+        <div id="result">
+            <h2>Select your mood to get today's study plan.</h2>
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
