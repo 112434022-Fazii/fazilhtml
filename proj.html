@@ -1,82 +1,109 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Registration Form</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Registration Form</title>
 </head>
 <body>
 
-<h2>Student Registration Form</h2>
+    <h2>Student Registration Form</h2>
 
-<form>
+    <form action="#" method="post">
 
-    <!-- 1. Text Field -->
-    Name:
-    <input type="text" name="name"><br><br>
+        <table cellpadding="8">
 
-    <!-- 2. Password -->
-    Password:
-    <input type="password" name="password"><br><br>
+            <tr>
+                <td><label for="name">Name</label></td>
+                <td><input type="text" id="name" name="name" required></td>
+            </tr>
 
-    <!-- 3. Email -->
-    Email:
-    <input type="email" name="email"><br><br>
+            <tr>
+                <td><label for="password">Password</label></td>
+                <td><input type="password" id="password" name="password" required></td>
+            </tr>
 
-    <!-- 4. Radio Button -->
-    Gender:
-    <input type="radio" name="gender"> Male
-    <input type="radio" name="gender"> Female
-    <br><br>
+            <tr>
+                <td><label for="email">Email</label></td>
+                <td><input type="email" id="email" name="email" required></td>
+            </tr>
 
-    <!-- 5. Checkbox -->
-    Hobbies:
-    <input type="checkbox"> Reading
-    <input type="checkbox"> Sports
-    <input type="checkbox"> Music
-    <br><br>
+            <tr>
+                <td>Gender</td>
+                <td>
+                    <input type="radio" id="male" name="gender" value="Male">
+                    <label for="male">Male</label>
 
-    <!-- 6. Combo Box -->
-    Department:
-    <select name="department">
-        <option>CSE</option>
-        <option>ECE</option>
-        <option>EEE</option>
-        <option>IT</option>
-    </select>
-    <br><br>
+                    <input type="radio" id="female" name="gender" value="Female">
+                    <label for="female">Female</label>
+                </td>
+            </tr>
 
-    <!-- 7. List Box -->
-    Skills:
-    <select multiple size="4">
-        <option>Java</option>
-        <option>Python</option>
-        <option>HTML</option>
-        <option>CSS</option>
-    </select>
-    <br><br>
+            <tr>
+                <td>Hobbies</td>
+                <td>
+                    <input type="checkbox" id="reading" name="hobbies" value="Reading">
+                    <label for="reading">Reading</label>
 
-    <!-- 8. Text Area -->
-    Address:
-    <br>
-    <textarea rows="4" cols="30"></textarea>
-    <br><br>
+                    <input type="checkbox" id="sports" name="hobbies" value="Sports">
+                    <label for="sports">Sports</label>
 
-    <!-- 9. Date -->
-    Date of Birth:
-    <input type="date">
-    <br><br>
+                    <input type="checkbox" id="music" name="hobbies" value="Music">
+                    <label for="music">Music</label>
+                </td>
+            </tr>
 
-    <!-- 10. File Upload -->
-    Upload Photo:
-    <input type="file">
-    <br><br>
+            <tr>
+                <td><label for="department">Department</label></td>
+                <td>
+                    <select id="department" name="department">
+                        <option>CSE</option>
+                        <option>ECE</option>
+                        <option>EEE</option>
+                        <option>IT</option>
+                    </select>
+                </td>
+            </tr>
 
-    <!-- 11. Submit Button -->
-    <input type="submit" value="Register">
+            <tr>
+                <td><label for="skills">Skills</label></td>
+                <td>
+                    <select id="skills" name="skills" multiple size="4">
+                        <option>Java</option>
+                        <option>Python</option>
+                        <option>HTML</option>
+                        <option>CSS</option>
+                    </select>
+                </td>
+            </tr>
 
-    <!-- 12. Reset Button -->
-    <input type="reset" value="Clear">
+            <tr>
+                <td><label for="address">Address</label></td>
+                <td>
+                    <textarea id="address" name="address" rows="4" cols="30"></textarea>
+                </td>
+            </tr>
 
-</form>
+            <tr>
+                <td><label for="dob">Date of Birth</label></td>
+                <td><input type="date" id="dob" name="dob"></td>
+            </tr>
+
+            <tr>
+                <td><label for="photo">Upload Photo</label></td>
+                <td><input type="file" id="photo" name="photo"></td>
+            </tr>
+
+            <tr>
+                <td colspan="2" align="center">
+                    <input type="submit" value="Register">
+                    <input type="reset" value="Clear">
+                </td>
+            </tr>
+
+        </table>
+
+    </form>
 
 </body>
 </html>
