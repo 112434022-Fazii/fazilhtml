@@ -1,82 +1,152 @@
-bro give me proper alien this code <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
     <title>Registration Form</title>
+
+    <style>
+        body{
+            font-family: Arial, sans-serif;
+            background-color:#f2f2f2;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            height:100vh;
+            margin:0;
+        }
+
+        .container{
+            background:white;
+            padding:30px;
+            border-radius:10px;
+            box-shadow:0 0 10px gray;
+            width:500px;
+        }
+
+        h2{
+            text-align:center;
+        }
+
+        table{
+            width:100%;
+        }
+
+        td{
+            padding:8px;
+            vertical-align:top;
+        }
+
+        input[type=text],
+        input[type=password],
+        input[type=email],
+        input[type=date],
+        select,
+        textarea{
+            width:100%;
+            padding:6px;
+            box-sizing:border-box;
+        }
+
+        .buttons{
+            text-align:center;
+        }
+    </style>
+
 </head>
 <body>
+
+<div class="container">
 
 <h2>Student Registration Form</h2>
 
 <form>
 
-    <!-- 1. Text Field -->
-    Name:
-    <input type="text" name="name"><br><br>
+<table>
 
-    <!-- 2. Password -->
-    Password:
-    <input type="password" name="password"><br><br>
+<tr>
+    <td>Name:</td>
+    <td><input type="text" name="name"></td>
+</tr>
 
-    <!-- 3. Email -->
-    Email:
-    <input type="email" name="email"><br><br>
+<tr>
+    <td>Password:</td>
+    <td><input type="password" name="password"></td>
+</tr>
 
-    <!-- 4. Radio Button -->
-    Gender:
-    <input type="radio" name="gender"> Male
-    <input type="radio" name="gender"> Female
-    <br><br>
+<tr>
+    <td>Email:</td>
+    <td><input type="email" name="email"></td>
+</tr>
 
-    <!-- 5. Checkbox -->
-    Hobbies:
-    <input type="checkbox"> Reading
-    <input type="checkbox"> Sports
-    <input type="checkbox"> Music
-    <br><br>
+<tr>
+    <td>Gender:</td>
+    <td>
+        <input type="radio" name="gender"> Male
+        <input type="radio" name="gender"> Female
+    </td>
+</tr>
 
-    <!-- 6. Combo Box -->
-    Department:
-    <select name="department">
-        <option>CSE</option>
-        <option>ECE</option>
-        <option>EEE</option>
-        <option>IT</option>
-    </select>
-    <br><br>
+<tr>
+    <td>Hobbies:</td>
+    <td>
+        <input type="checkbox"> Reading
+        <input type="checkbox"> Sports
+        <input type="checkbox"> Music
+    </td>
+</tr>
 
-    <!-- 7. List Box -->
-    Skills:
-    <select multiple size="4">
-        <option>Java</option>
-        <option>Python</option>
-        <option>HTML</option>
-        <option>CSS</option>
-    </select>
-    <br><br>
+<tr>
+    <td>Department:</td>
+    <td>
+        <select name="department">
+            <option>CSE</option>
+            <option>ECE</option>
+            <option>EEE</option>
+            <option>IT</option>
+        </select>
+    </td>
+</tr>
 
-    <!-- 8. Text Area -->
-    Address:
-    <br>
-    <textarea rows="4" cols="30"></textarea>
-    <br><br>
+<tr>
+    <td>Skills:</td>
+    <td>
+        <select multiple size="4">
+            <option>Java</option>
+            <option>Python</option>
+            <option>HTML</option>
+            <option>CSS</option>
+        </select>
+    </td>
+</tr>
 
-    <!-- 9. Date -->
-    Date of Birth:
-    <input type="date">
-    <br><br>
+<tr>
+    <td>Address:</td>
+    <td>
+        <textarea rows="4"></textarea>
+    </td>
+</tr>
 
-    <!-- 10. File Upload -->
-    Upload Photo:
-    <input type="file">
-    <br><br>
+<tr>
+    <td>Date of Birth:</td>
+    <td><input type="date"></td>
+</tr>
 
-    <!-- 11. Submit Button -->
-    <input type="submit" value="Register">
+<tr>
+    <td>Upload Photo:</td>
+    <td><input type="file"></td>
+</tr>
 
-    <!-- 12. Reset Button -->
-    <input type="reset" value="Clear">
+<tr>
+    <td colspan="2" class="buttons">
+        <input type="submit" value="Register">
+        <input type="reset" value="Clear">
+    </td>
+</tr>
+
+</table>
 
 </form>
+
+</div>
 
 </body>
 </html>
