@@ -1,154 +1,82 @@
-<!DOCTYPE html>
-<html lang="en">
+bro give me proper alien this code <!DOCTYPE html>
+<html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Student Registration Form</title>
-
-<style>
-    body{
-        font-family: Arial, sans-serif;
-        background:#f2f2f2;
-        display:flex;
-        justify-content:center;
-        align-items:center;
-        height:100vh;
-        margin:0;
-    }
-
-    .container{
-        background:white;
-        width:500px;
-        padding:25px;
-        border-radius:10px;
-        box-shadow:0 0 10px rgba(0,0,0,0.3);
-    }
-
-    h2{
-        text-align:center;
-        margin-bottom:20px;
-    }
-
-    .form-group{
-        display:flex;
-        align-items:center;
-        margin-bottom:15px;
-    }
-
-    .form-group label{
-        width:140px;
-        font-weight:bold;
-    }
-
-    input[type=text],
-    input[type=password],
-    input[type=email],
-    input[type=date],
-    select,
-    textarea{
-        flex:1;
-        padding:8px;
-    }
-
-    textarea{
-        resize:none;
-    }
-
-    .buttons{
-        text-align:center;
-        margin-top:20px;
-    }
-
-    .buttons input{
-        padding:10px 20px;
-        margin:5px;
-    }
-</style>
-
+    <title>Registration Form</title>
 </head>
 <body>
-
-<div class="container">
 
 <h2>Student Registration Form</h2>
 
 <form>
 
-<div class="form-group">
-<label>Name</label>
-<input type="text">
-</div>
+    <!-- 1. Text Field -->
+    Name:
+    <input type="text" name="name"><br><br>
 
-<div class="form-group">
-<label>Password</label>
-<input type="password">
-</div>
+    <!-- 2. Password -->
+    Password:
+    <input type="password" name="password"><br><br>
 
-<div class="form-group">
-<label>Email</label>
-<input type="email">
-</div>
+    <!-- 3. Email -->
+    Email:
+    <input type="email" name="email"><br><br>
 
-<div class="form-group">
-<label>Gender</label>
-<div>
-<input type="radio" name="gender"> Male
-<input type="radio" name="gender"> Female
-</div>
-</div>
+    <!-- 4. Radio Button -->
+    Gender:
+    <input type="radio" name="gender"> Male
+    <input type="radio" name="gender"> Female
+    <br><br>
 
-<div class="form-group">
-<label>Hobbies</label>
-<div>
-<input type="checkbox"> Reading
-<input type="checkbox"> Sports
-<input type="checkbox"> Music
-</div>
-</div>
+    <!-- 5. Checkbox -->
+    Hobbies:
+    <input type="checkbox"> Reading
+    <input type="checkbox"> Sports
+    <input type="checkbox"> Music
+    <br><br>
 
-<div class="form-group">
-<label>Department</label>
-<select>
-<option>CSE</option>
-<option>ECE</option>
-<option>EEE</option>
-<option>IT</option>
-</select>
-</div>
+    <!-- 6. Combo Box -->
+    Department:
+    <select name="department">
+        <option>CSE</option>
+        <option>ECE</option>
+        <option>EEE</option>
+        <option>IT</option>
+    </select>
+    <br><br>
 
-<div class="form-group">
-<label>Skills</label>
-<select multiple size="4">
-<option>Java</option>
-<option>Python</option>
-<option>HTML</option>
-<option>CSS</option>
-</select>
-</div>
+    <!-- 7. List Box -->
+    Skills:
+    <select multiple size="4">
+        <option>Java</option>
+        <option>Python</option>
+        <option>HTML</option>
+        <option>CSS</option>
+    </select>
+    <br><br>
 
-<div class="form-group">
-<label>Address</label>
-<textarea rows="4"></textarea>
-</div>
+    <!-- 8. Text Area -->
+    Address:
+    <br>
+    <textarea rows="4" cols="30"></textarea>
+    <br><br>
 
-<div class="form-group">
-<label>Date of Birth</label>
-<input type="date">
-</div>
+    <!-- 9. Date -->
+    Date of Birth:
+    <input type="date">
+    <br><br>
 
-<div class="form-group">
-<label>Upload Photo</label>
-<input type="file">
-</div>
+    <!-- 10. File Upload -->
+    Upload Photo:
+    <input type="file">
+    <br><br>
 
-<div class="buttons">
-<input type="submit" value="Register">
-<input type="reset" value="Clear">
-</div>
+    <!-- 11. Submit Button -->
+    <input type="submit" value="Register">
+
+    <!-- 12. Reset Button -->
+    <input type="reset" value="Clear">
 
 </form>
-
-</div>
 
 </body>
 </html>
