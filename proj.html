@@ -1,109 +1,154 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Registration Form</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Registration Form</title>
+
+<style>
+    body{
+        font-family: Arial, sans-serif;
+        background:#f2f2f2;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        height:100vh;
+        margin:0;
+    }
+
+    .container{
+        background:white;
+        width:500px;
+        padding:25px;
+        border-radius:10px;
+        box-shadow:0 0 10px rgba(0,0,0,0.3);
+    }
+
+    h2{
+        text-align:center;
+        margin-bottom:20px;
+    }
+
+    .form-group{
+        display:flex;
+        align-items:center;
+        margin-bottom:15px;
+    }
+
+    .form-group label{
+        width:140px;
+        font-weight:bold;
+    }
+
+    input[type=text],
+    input[type=password],
+    input[type=email],
+    input[type=date],
+    select,
+    textarea{
+        flex:1;
+        padding:8px;
+    }
+
+    textarea{
+        resize:none;
+    }
+
+    .buttons{
+        text-align:center;
+        margin-top:20px;
+    }
+
+    .buttons input{
+        padding:10px 20px;
+        margin:5px;
+    }
+</style>
+
 </head>
 <body>
 
-    <h2>Student Registration Form</h2>
+<div class="container">
 
-    <form action="#" method="post">
+<h2>Student Registration Form</h2>
 
-        <table cellpadding="8">
+<form>
 
-            <tr>
-                <td><label for="name">Name</label></td>
-                <td><input type="text" id="name" name="name" required></td>
-            </tr>
+<div class="form-group">
+<label>Name</label>
+<input type="text">
+</div>
 
-            <tr>
-                <td><label for="password">Password</label></td>
-                <td><input type="password" id="password" name="password" required></td>
-            </tr>
+<div class="form-group">
+<label>Password</label>
+<input type="password">
+</div>
 
-            <tr>
-                <td><label for="email">Email</label></td>
-                <td><input type="email" id="email" name="email" required></td>
-            </tr>
+<div class="form-group">
+<label>Email</label>
+<input type="email">
+</div>
 
-            <tr>
-                <td>Gender</td>
-                <td>
-                    <input type="radio" id="male" name="gender" value="Male">
-                    <label for="male">Male</label>
+<div class="form-group">
+<label>Gender</label>
+<div>
+<input type="radio" name="gender"> Male
+<input type="radio" name="gender"> Female
+</div>
+</div>
 
-                    <input type="radio" id="female" name="gender" value="Female">
-                    <label for="female">Female</label>
-                </td>
-            </tr>
+<div class="form-group">
+<label>Hobbies</label>
+<div>
+<input type="checkbox"> Reading
+<input type="checkbox"> Sports
+<input type="checkbox"> Music
+</div>
+</div>
 
-            <tr>
-                <td>Hobbies</td>
-                <td>
-                    <input type="checkbox" id="reading" name="hobbies" value="Reading">
-                    <label for="reading">Reading</label>
+<div class="form-group">
+<label>Department</label>
+<select>
+<option>CSE</option>
+<option>ECE</option>
+<option>EEE</option>
+<option>IT</option>
+</select>
+</div>
 
-                    <input type="checkbox" id="sports" name="hobbies" value="Sports">
-                    <label for="sports">Sports</label>
+<div class="form-group">
+<label>Skills</label>
+<select multiple size="4">
+<option>Java</option>
+<option>Python</option>
+<option>HTML</option>
+<option>CSS</option>
+</select>
+</div>
 
-                    <input type="checkbox" id="music" name="hobbies" value="Music">
-                    <label for="music">Music</label>
-                </td>
-            </tr>
+<div class="form-group">
+<label>Address</label>
+<textarea rows="4"></textarea>
+</div>
 
-            <tr>
-                <td><label for="department">Department</label></td>
-                <td>
-                    <select id="department" name="department">
-                        <option>CSE</option>
-                        <option>ECE</option>
-                        <option>EEE</option>
-                        <option>IT</option>
-                    </select>
-                </td>
-            </tr>
+<div class="form-group">
+<label>Date of Birth</label>
+<input type="date">
+</div>
 
-            <tr>
-                <td><label for="skills">Skills</label></td>
-                <td>
-                    <select id="skills" name="skills" multiple size="4">
-                        <option>Java</option>
-                        <option>Python</option>
-                        <option>HTML</option>
-                        <option>CSS</option>
-                    </select>
-                </td>
-            </tr>
+<div class="form-group">
+<label>Upload Photo</label>
+<input type="file">
+</div>
 
-            <tr>
-                <td><label for="address">Address</label></td>
-                <td>
-                    <textarea id="address" name="address" rows="4" cols="30"></textarea>
-                </td>
-            </tr>
+<div class="buttons">
+<input type="submit" value="Register">
+<input type="reset" value="Clear">
+</div>
 
-            <tr>
-                <td><label for="dob">Date of Birth</label></td>
-                <td><input type="date" id="dob" name="dob"></td>
-            </tr>
+</form>
 
-            <tr>
-                <td><label for="photo">Upload Photo</label></td>
-                <td><input type="file" id="photo" name="photo"></td>
-            </tr>
-
-            <tr>
-                <td colspan="2" align="center">
-                    <input type="submit" value="Register">
-                    <input type="reset" value="Clear">
-                </td>
-            </tr>
-
-        </table>
-
-    </form>
+</div>
 
 </body>
 </html>
