@@ -1,42 +1,73 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mood Based Study Planner</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Student Register Form</title>
 </head>
 
 <body>
 
-    <div class="container">
+    <center>
+        <h1>Student Register Form</h1>
 
-        <h1>📚 Mood Based Study Planner</h1>
+        <form action="index.php" method="POST">
+            <table border="1" cellpadding="10">
 
-        <p>How are you feeling today?</p>
+                <tr>
+                    <td>Name:</td>
+                    <td>
+                        <input type="text" name="name" placeholder="Enter your name" required>
+                    </td>
+                </tr>
 
-        <div class="mood-container">
+                <tr>
+                    <td>Age:</td>
+                    <td>
+                        <input type="number" name="age" placeholder="Enter your age" required>
+                    </td>
+                </tr>
 
-            <button class="mood-btn" onclick="selectMood('Happy')">😊 Happy</button>
+                <tr>
+                    <td>Address:</td>
+                    <td>
+                        <input type="text" name="address" placeholder="Enter your address" required>
+                    </td>
+                </tr>
 
-            <button class="mood-btn" onclick="selectMood('Sleepy')">😴 Sleepy</button>
+                <tr>
+                    <td>Gender:</td>
+                    <td>
+                        <input type="radio" name="gender" value="Male" required> Male
+                        <input type="radio" name="gender" value="Female"> Female
+                    </td>
+                </tr>
 
-            <button class="mood-btn" onclick="selectMood('Stressed')">😫 Stressed</button>
+                <tr>
+                    <td>Department:</td>
+                    <td>
+                        <select name="department" required>
+                            <option value="">--Select Department--</option>
+                            <option value="Python">Python</option>
+                            <option value="Java">Java</option>
+                            <option value="C++">C++</option>
+                        </select>
+                    </td>
+                </tr>
 
-            <button class="mood-btn" onclick="selectMood('Motivated')">🔥 Motivated</button>
+                <tr>
+                    <td>
+                        <input type="submit" value="Register">
+                    </td>
+                    <td>
+                        <input type="reset" value="Reset">
+                    </td>
+                </tr>
 
-            <button class="mood-btn" onclick="selectMood('Sad')">😔 Sad</button>
+            </table>
+        </form>
 
-        </div>
-
-        <div id="result">
-            <h2>Select your mood to get today's study plan.</h2>
-        </div>
-
-    </div>
-
-    <script src="script.js"></script>
+    </center>
 
 </body>
+
 </html>
