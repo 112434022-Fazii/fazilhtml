@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Student Register Form</title>
+</head>
+
+<body>
+
+    <center>
+
+        <h1>Student Register Form</h1>
+
+        <form action="negative.php" method="GET">
+
+            <table border="1" cellpadding="10">
+
+                <tr>
+                    <td>Name:</td>
+                    <td>
+                        <input type="text" name="name" placeholder="Enter your name">
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Password:</td>
+                    <td>
+                        <input type="password" name="password" placeholder="Enter your password">
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Age:</td>
+                    <td>
+                        <input type="number" name="age" placeholder="Enter your age">
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Address:</td>
+                    <td>
+                        <input type="text" name="address" placeholder="Enter your address">
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Gender:</td>
+                    <td>
+                        <input type="radio" name="gender" value="Male"> Male
+                        <input type="radio" name="gender" value="Female"> Female
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Department:</td>
+                    <td>
+                        <select name="department">
+                            <option value="">--Select Department--</option>
+                            <option value="Python">Python</option>
+                            <option value="Java">Java</option>
+                            <option value="C++">C++</option>
+                        </select>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <input type="submit" value="Register">
+                    </td>
+
+                    <td>
+                        <input type="reset" value="Reset">
+                    </td>
+                </tr>
+
+            </table>
+
+        </form>
+
+    </center>
+
+</body>
+
+</html>
