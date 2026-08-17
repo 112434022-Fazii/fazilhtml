@@ -1,29 +1,72 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-    <title>Movie Booking</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Movie Booking - Home</title>
+
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
+    <!-- NAVBAR -->
+
     <nav>
+
         <h2>🎬 Movie Booking</h2>
 
-        <a href="index.html">Home</a>
-        <a href="movies.html">Movies</a>
-        <a href="booking.html">Booking</a>
+        <div>
+            <a href="index.html">Home</a>
+            <a href="movies.html">Movies</a>
+            <a href="booking.html">Booking</a>
+        </div>
+
     </nav>
 
-    <div class="home">
-        <h1>Welcome to Movie Booking</h1>
 
-        <p>Book your favourite movie tickets easily!</p>
+    <!-- HOME -->
 
-        <a href="movies.html">
-            <button>View Movies</button>
-        </a>
-    </div>
+    <section class="home">
+
+        <h1>
+            Welcome to Movie Booking 🎬
+        </h1>
+
+        <p>
+            Book your favourite movie tickets easily!
+        </p>
+
+
+        <!-- LOGIN -->
+
+        <div class="login-box">
+
+            <h2>Login</h2>
+
+            <input
+                type="text"
+                id="name"
+                placeholder="Enter your name">
+
+            <input
+                type="email"
+                id="email"
+                placeholder="Enter your email">
+
+            <button onclick="login()">
+                Login
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <script src="script.js"></script>
 
 </body>
+
 </html>

@@ -1,33 +1,115 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-    <title>Confirmation</title>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Booking Confirmation</title>
+
     <link rel="stylesheet" href="style.css">
+
 </head>
 
 <body>
 
-    <nav>
-        <h2>🎬 Movie Booking</h2>
+
+<!-- NAVBAR -->
+
+<nav>
+
+    <h2>🎬 Movie Booking</h2>
+
+    <div>
 
         <a href="index.html">Home</a>
+
         <a href="movies.html">Movies</a>
+
         <a href="booking.html">Booking</a>
-    </nav>
-
-    <div class="confirmation">
-
-        <h1>✅ Booking Confirmed!</h1>
-
-        <p>Your ticket has been booked successfully.</p>
-
-        <h3>Thank you for booking with us!</h3>
-
-        <a href="index.html">
-            <button>Back to Home</button>
-        </a>
 
     </div>
 
+</nav>
+
+
+<!-- CONFIRMATION -->
+
+<div class="confirmation">
+
+    <div class="success">
+        ✓
+    </div>
+
+    <h1>
+        Booking Confirmed!
+    </h1>
+
+    <p>
+        Your movie tickets have been booked successfully.
+    </p>
+
+
+    <!-- TICKET -->
+
+    <div class="ticket">
+
+        <h2>
+            🎟️ Movie Ticket
+        </h2>
+
+        <p>
+            <b>Booking ID</b>
+            <span id="bookingId"></span>
+        </p>
+
+        <p>
+            <b>Movie</b>
+            <span id="confirmMovie"></span>
+        </p>
+
+        <p>
+            <b>Date</b>
+            <span id="confirmDate"></span>
+        </p>
+
+        <p>
+            <b>Time</b>
+            <span id="confirmTime"></span>
+        </p>
+
+        <p>
+            <b>Seats</b>
+            <span id="confirmSeats"></span>
+        </p>
+
+        <p>
+            <b>Tickets</b>
+            <span id="confirmTickets"></span>
+        </p>
+
+        <p>
+            <b>Total</b>
+            <span id="confirmTotal"></span>
+        </p>
+
+    </div>
+
+
+    <a
+        href="movies.html"
+        class="home-button">
+
+        Book Another Movie
+
+    </a>
+
+</div>
+
+
+<script src="script.js"></script>
+
 </body>
+
 </html>
