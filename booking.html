@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>CineMax - Booking</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<header>
+
+    <div class="logo">🎬 CineMax</div>
+
+    <nav>
+
+        <a href="index.html">Home</a>
+
+        <a href="movies.html">Movies</a>
+
+        <a href="booking.html">Booking</a>
+
+        <button id="logoutBtn" onclick="logoutUser()">Logout</button>
+
+    </nav>
+
+</header>
+
+
+<section class="booking-page">
+
+    <div class="booking-box">
+
+        <div class="booking-title">
+
+            <p class="section-small-title">
+                RESERVE YOUR SEATS
+            </p>
+
+            <h1>Book Your Tickets</h1>
+
+        </div>
+
+
+        <!-- MOVIE -->
+
+        <label>Select Movie</label>
+
+        <select id="movieSelect">
+
+            <option value="">
+                -- Select Movie --
+            </option>
+
+            <option value="Avengers: Doomsday">
+                Avengers: Doomsday - ₹250
+            </option>
+
+            <option value="The Conjuring">
+                The Conjuring - ₹200
+            </option>
+
+            <option value="Sita Ramam">
+                Sita Ramam - ₹180
+            </option>
+
+        </select>
+
+
+        <!-- DATE -->
+
+        <label>Booking Date</label>
+
+        <input
+            type="date"
+            id="bookingDate"
+        >
+
+        <small id="dateMessage">
+            Booking available for today and the next 2 days only.
+        </small>
+
+
+        <!-- SHOW TIME -->
+
+        <label>Show Time</label>
+
+        <select id="showTime">
+
+            <option value="">
+                -- Select Show Time --
+            </option>
+
+            <option value="10:00 AM">
+                10:00 AM
+            </option>
+
+            <option value="01:30 PM">
+                01:30 PM
+            </option>
+
+            <option value="06:00 PM">
+                06:00 PM
+            </option>
+
+            <option value="09:30 PM">
+                09:30 PM
+            </option>
+
+        </select>
+
+
+        <!-- TICKETS -->
+
+        <label>Number of Tickets</label>
+
+        <input
+            type="number"
+            id="ticketCount"
+            min="1"
+            max="6"
+            value="1"
+        >
+
+        <small>
+            Maximum 6 tickets per booking.
+        </small>
+
+
+        <!-- PRICE -->
+
+        <div class="price-box">
+
+            <div>
+
+                <span>Ticket Price</span>
+
+                <strong id="ticketPrice">
+                    ₹0
+                </strong>
+
+            </div>
+
+            <div>
+
+                <span>Total Amount</span>
+
+                <strong id="totalPrice">
+                    ₹0
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <!-- SCREEN -->
+
+        <div class="screen-area">
+
+            <div class="screen">
+                SCREEN
+            </div>
+
+            <p>
+                All eyes this way
+            </p>
+
+        </div>
+
+
+        <!-- LEGEND -->
+
+        <h2 class="seat-heading">
+            Select Your Seats
+        </h2>
+
+        <div class="seat-info">
+
+            <span>
+                <i class="available-box"></i>
+                Available
+            </span>
+
+            <span>
+                <i class="selected-box"></i>
+                Selected
+            </span>
+
+            <span>
+                <i class="booked-box"></i>
+                Booked
+            </span>
+
+        </div>
+
+
+        <!-- SEATS -->
+
+        <div
+            id="seatContainer"
+            class="seat-container"
+        ></div>
+
+
+        <p
+            id="seatMessage"
+            class="seat-message"
+        ></p>
+
+
+        <button
+            class="confirm-btn"
+            onclick="confirmBooking()"
+        >
+            Confirm Booking
+        </button>
+
+    </div>
+
+</section>
+
+
+<footer>
+
+    <p>
+        © 2026 CineMax Movie Booking System
+    </p>
+
+</footer>
+
+
+<script src="script.js"></script>
+
+</body>
+
+</html>
