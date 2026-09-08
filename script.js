@@ -1,1158 +1,409 @@
-/* =========================================
-   CINEMAX MOVIE BOOKING SYSTEM
-   ========================================= */
+const API = "api/";
 
-
-/* =========================================
-   CREATE ACCOUNT - SHOW REGISTER BOX
-   ========================================= */
-
-function showRegister() {
-
-    const registerBox = document.getElementById("registerBox");
-
-    if (registerBox) {
-
-        registerBox.style.display = "block";
-
-        registerBox.scrollIntoView({
-            behavior: "smooth",
-            block: "center"
-        });
-    }
-}
-
-
-/* =========================================
-   REGISTER USER - MYSQL
-   ========================================= */
-
-function registerUser(event) {
-
-    event.preventDefault();
-
-    const name = document.getElementById("registerName").value.trim();
-    const username = document.getElementById("registerUsername").value.trim();
-    const email = document.getElementById("registerEmail").value.trim();
-    const password = document.getElementById("registerPassword").value;
-    const confirmPassword = document.getElementById("confirmPassword").value;
-    const message = document.getElementById("registerMessage");
-
-
-    /* Username validation */
-
-    if (username.length < 3) {
-
-        message.style.color = "red";
-        message.textContent =
-            "Username must contain at least 3 characters.";
-
-        return;
-    }
-
-
-    /* Password validation */
-
-    if (password.length < 6) {
-
-        message.style.color = "red";
-        message.textContent =
-            "Password must contain at least 6 characters.";
-
-        return;
-    }
-
-
-    /* Confirm password */
-
-    if (password !== confirmPassword) {
-
-        message.style.color = "red";
-        message.textContent =
-            "Passwords do not match.";
-
-        return;
-    }
-
-
-    /* Create form data */
-
-    const formData = new FormData();
-
-    formData.append("name", name);
-    formData.append("username", username);
-    formData.append("email", email);
-    formData.append("password", password);
-
-
-    /* Send data to PHP */
-
-    fetch("register.php", {
-        method: "POST",
-        body: formData
-    })
-
-    .then(response => response.text())
-
-    .then(data => {
-
-        message.textContent = data;
-
-
-        if (data.trim() === "Registration successful!") {
-
-            message.style.color = "green";
-
-            document.getElementById("registerName").value = "";
-            document.getElementById("registerUsername").value = "";
-            document.getElementById("registerEmail").value = "";
-            document.getElementById("registerPassword").value = "";
-            document.getElementById("confirmPassword").value = "";
-
-        } else {
-
-            message.style.color = "red";
-
-        }
-
-    })
-
-    .catch(error => {
-
-        console.log(error);
-
-        message.style.color = "red";
-        message.textContent =
-            "Unable to connect to server.";
-
-    });
-}
-
-
-/* =========================================
-   LOGIN USER
-   ========================================= */
-
-function loginUser(event) {
-
-    event.preventDefault();
-
-    const username =
-        document.getElementById("loginUsername").value.trim();
-
-    const password =
-        document.getElementById("loginPassword").value;
-
-    const message =
-        document.getElementById("loginMessage");
-
-
-    /* Get registered user */
-
-    const savedUser =
-        JSON.parse(localStorage.getItem("user"));
-
-
-    /* Check account */
-
-    if (!savedUser) {
-
-        message.style.color = "red";
-
-        message.textContent =
-            "Account not found. Please create an account first.";
-
-        return;
-    }
-
-
-    /* Check username and password */
-
-    if (
-        username.toLowerCase() ===
-        savedUser.username.toLowerCase()
-        &&
-        password === savedUser.password
-    ) {
-
-        localStorage.setItem(
-            "loggedIn",
-            "true"
-        );
-
-        message.style.color = "green";
-
-        message.textContent =
-            "Login successful!";
-
-
-        setTimeout(function () {
-
-            window.location.href =
-                "movies.html";
-
-        }, 700);
-
-    } else {
-
-        message.style.color = "red";
-
-        message.textContent =
-            "Incorrect username or password.";
-
-    }
-}
-
-
-/* =========================================
-   LOGOUT
-   ========================================= */
-
-function logoutUser() {
-
-    localStorage.removeItem("loggedIn");
-
-    alert("You have been logged out.");
-
-    window.location.href = "index.html";
-}
-
-
-/* =========================================
-   SELECT MOVIE
-   ========================================= */
-
-function selectMovie(movie) {
-
-    localStorage.setItem(
-        "selectedMovie",
-        movie
-    );
-
-    window.location.href =
-        "booking.html";
-}
-
-
-/* =========================================
-   GET MOVIE PRICE
-   ========================================= */
-
-function getMoviePrice(movie) {
-
-    if (movie === "Avengers: Doomsday") {
-        return 250;
-    }
-
-    if (movie === "The Conjuring") {
-        return 200;
-    }
-
-    if (movie === "Sita Ramam") {
-        return 180;
-    }
-
-    return 0;
-}
-
-
-/* =========================================
-   CALCULATE PRICE
-   ========================================= */
-
-function calculatePrice() {
-
-    const movieSelect =
-        document.getElementById("movieSelect");
-
-    const ticketCount =
-        document.getElementById("ticketCount");
-
-    const ticketPrice =
-        document.getElementById("ticketPrice");
-
-    const totalPrice =
-        document.getElementById("totalPrice");
-
-
-    if (
-        !movieSelect ||
-        !ticketCount ||
-        !ticketPrice ||
-        !totalPrice
-    ) {
-        return;
-    }
-
-
-    const price =
-        getMoviePrice(movieSelect.value);
-
-    const tickets =
-        parseInt(ticketCount.value) || 0;
-
-
-    ticketPrice.textContent =
-        "₹" + price;
-
-    totalPrice.textContent =
-        "₹" + (price * tickets);
-}
-
-
-/* =========================================
-   GET TODAY'S DATE
-   ========================================= */
-
-function getTodayDate() {
-
-    const today = new Date();
-
-    const year =
-        today.getFullYear();
-
-    const month =
-        String(today.getMonth() + 1)
-        .padStart(2, "0");
-
-    const day =
-        String(today.getDate())
-        .padStart(2, "0");
-
-
-    return (
-        year +
-        "-" +
-        month +
-        "-" +
-        day
-    );
-}
-
-
-/* =========================================
-   GET DATE AFTER SPECIFIC DAYS
-   ========================================= */
-
-function getDateAfterDays(days) {
-
-    const date = new Date();
-
-    date.setDate(
-        date.getDate() + days
-    );
-
-
-    const year =
-        date.getFullYear();
-
-    const month =
-        String(date.getMonth() + 1)
-        .padStart(2, "0");
-
-    const day =
-        String(date.getDate())
-        .padStart(2, "0");
-
-
-    return (
-        year +
-        "-" +
-        month +
-        "-" +
-        day
-    );
-}
-
-
-/* =========================================
-   CHECK VALID BOOKING DATE
-   Only today + next 2 days
-   ========================================= */
-
-function isValidBookingDate(date) {
-
-    const today =
-        getTodayDate();
-
-    const lastDate =
-        getDateAfterDays(2);
-
-
-    return (
-        date >= today &&
-        date <= lastDate
-    );
-}
-
-
-/* =========================================
-   SELECTED SEATS
-   ========================================= */
+let movies = [];
 
 let selectedSeats = [];
 
 
-/* =========================================
-   CREATE 96 SEATS
-   A1 - H12
-   ========================================= */
-
-function createSeats() {
-
-    const container =
-        document.getElementById("seatContainer");
-
-
-    if (!container) {
-        return;
-    }
-
-
-    container.innerHTML = "";
-
-
-    const rows = [
-        "A",
-        "B",
-        "C",
-        "D",
-        "E",
-        "F",
-        "G",
-        "H"
-    ];
-
-
-    rows.forEach(function (row) {
-
-        const rowDiv =
-            document.createElement("div");
-
-        rowDiv.className =
-            "seat-row";
-
-
-        /* Row name */
-
-        const rowName =
-            document.createElement("span");
-
-        rowName.className =
-            "row-name";
-
-        rowName.textContent =
-            row;
-
-        rowDiv.appendChild(rowName);
-
-
-        /* Create 12 seats */
-
-        for (
-            let number = 1;
-            number <= 12;
-            number++
-        ) {
-
-            const seat =
-                document.createElement("button");
-
-            seat.type =
-                "button";
-
-            seat.className =
-                "seat";
-
-            seat.textContent =
-                row + number;
-
-            seat.dataset.seat =
-                row + number;
-
-
-            seat.onclick =
-                function () {
-
-                    selectSeat(this);
-
-                };
-
-
-            rowDiv.appendChild(seat);
-        }
-
-
-        container.appendChild(rowDiv);
-
-    });
-
-
-    loadBookedSeats();
-}
-
-
-/* =========================================
-   SELECT / UNSELECT SEAT
-   ========================================= */
-
-function selectSeat(seat) {
-
-    /* Don't select booked seat */
-
-    if (
-        seat.classList.contains(
-            "booked-seat"
-        )
-    ) {
-        return;
-    }
-
-
-    const ticketInput =
-        document.getElementById(
-            "ticketCount"
-        );
-
-
-    const ticketCount =
-        parseInt(ticketInput.value) || 1;
-
-
-    const seatNumber =
-        seat.dataset.seat;
-
-
-    /* If already selected, unselect */
-
-    if (
-        selectedSeats.includes(
-            seatNumber
-        )
-    ) {
-
-        selectedSeats =
-            selectedSeats.filter(
-                function (item) {
-
-                    return item !==
-                        seatNumber;
-
-                }
-            );
-
-
-        seat.classList.remove(
-            "selected-seat"
-        );
-
-
-        showSelectedSeats();
-
-        return;
-    }
-
-
-    /* Don't allow more seats than tickets */
-
-    if (
-        selectedSeats.length >=
-        ticketCount
-    ) {
-
-        document.getElementById(
-            "seatMessage"
-        ).textContent =
-            "You can select only " +
-            ticketCount +
-            " seat(s).";
-
-        return;
-    }
-
-
-    /* Select seat */
-
-    selectedSeats.push(
-        seatNumber
-    );
-
-
-    seat.classList.add(
-        "selected-seat"
-    );
-
-
-    showSelectedSeats();
-}
-
-
-/* =========================================
-   DISPLAY SELECTED SEATS
-   ========================================= */
-
-function showSelectedSeats() {
-
-    const message =
-        document.getElementById(
-            "seatMessage"
-        );
-
-
-    if (!message) {
-        return;
-    }
-
-
-    if (
-        selectedSeats.length === 0
-    ) {
-
-        message.textContent = "";
-
-        return;
-    }
-
-
-    message.textContent =
-        "Selected Seats: " +
-        selectedSeats.join(", ");
-}
-
-
-/* =========================================
-   GET UNIQUE BOOKING KEY
-   Movie + Date + Show Time
-   ========================================= */
-
-function getBookingKey() {
-
-    const movie =
-        document.getElementById(
-            "movieSelect"
-        ).value;
-
-    const date =
-        document.getElementById(
-            "bookingDate"
-        ).value;
-
-    const time =
-        document.getElementById(
-            "showTime"
-        ).value;
-
-
-    return (
-        movie +
-        "|" +
-        date +
-        "|" +
-        time
-    );
-}
-
-
-/* =========================================
-   LOAD BOOKED SEATS
-   ========================================= */
-
-function loadBookedSeats() {
-
-    const movie =
-        document.getElementById(
-            "movieSelect"
-        );
-
-    const date =
-        document.getElementById(
-            "bookingDate"
-        );
-
-    const time =
-        document.getElementById(
-            "showTime"
-        );
-
-
-    if (
-        !movie ||
-        !date ||
-        !time
-    ) {
-        return;
-    }
-
-
-    /* Clear previous selected seats */
-
-    selectedSeats = [];
-
-
-    document.querySelectorAll(
-        ".seat"
-    ).forEach(function (seat) {
-
-        seat.classList.remove(
-            "selected-seat"
-        );
-
-        seat.classList.remove(
-            "booked-seat"
-        );
-
-    });
-
-
-    /* Nothing selected */
-
-    if (
-        movie.value === "" ||
-        date.value === "" ||
-        time.value === ""
-    ) {
-
-        showSelectedSeats();
-
-        return;
-    }
-
-
-    const key =
-        getBookingKey();
-
-
-    /* Get all booked seats */
-
-    const allBookings =
-        JSON.parse(
-            localStorage.getItem(
-                "bookedSeats"
-            )
-        ) || {};
-
-
-    const bookedSeats =
-        allBookings[key] || [];
-
-
-    /* Mark booked seats */
-
-    document.querySelectorAll(
-        ".seat"
-    ).forEach(function (seat) {
-
-        if (
-            bookedSeats.includes(
-                seat.dataset.seat
-            )
-        ) {
-
-            seat.classList.add(
-                "booked-seat"
-            );
-
-        }
-
-    });
-
-
-    showSelectedSeats();
-}
-
-
-/* =========================================
-   TICKET COUNT CHANGED
-   ========================================= */
-
-function ticketChanged() {
-
-    const input =
-        document.getElementById(
-            "ticketCount"
-        );
-
-
-    let count =
-        parseInt(input.value);
-
-
-    /* Minimum */
-
-    if (
-        isNaN(count) ||
-        count < 1
-    ) {
-
-        count = 1;
-
-        input.value = 1;
-    }
-
-
-    /* Maximum */
-
-    if (count > 6) {
-
-        count = 6;
-
-        input.value = 6;
-
-        alert(
-            "Maximum 6 tickets are allowed."
-        );
-    }
-
-
-    /* Clear selected seats */
-
-    selectedSeats = [];
-
-
-    document.querySelectorAll(
-        ".seat"
-    ).forEach(function (seat) {
-
-        seat.classList.remove(
-            "selected-seat"
-        );
-
-    });
-
-
-    showSelectedSeats();
-
-    calculatePrice();
-}
-
-
-/* =========================================
-   CONFIRM BOOKING
-   ========================================= */
-
-function confirmBooking() {
-
-    /* Check login */
-
-    const loggedIn =
-        localStorage.getItem(
-            "loggedIn"
-        );
-
-
-    if (loggedIn !== "true") {
-
-        alert(
-            "Please login before booking."
-        );
-
-        window.location.href =
-            "index.html";
-
-        return;
-    }
-
-
-    /* Get booking details */
-
-    const movie =
-        document.getElementById(
-            "movieSelect"
-        ).value;
-
-    const date =
-        document.getElementById(
-            "bookingDate"
-        ).value;
-
-    const time =
-        document.getElementById(
-            "showTime"
-        ).value;
-
-    const tickets =
-        parseInt(
-            document.getElementById(
-                "ticketCount"
-            ).value
-        );
-
-
-    /* Movie validation */
-
-    if (movie === "") {
-
-        alert(
-            "Please select a movie."
-        );
-
-        return;
-    }
-
-
-    /* Date validation */
-
-    if (date === "") {
-
-        alert(
-            "Please select a booking date."
-        );
-
-        return;
-    }
-
-
-    if (
-        !isValidBookingDate(date)
-    ) {
-
-        alert(
-            "Booking is available only for today and the next 2 days."
-        );
-
-        return;
-    }
-
-
-    /* Show time validation */
-
-    if (time === "") {
-
-        alert(
-            "Please select a show time."
-        );
-
-        return;
-    }
-
-
-    /* Ticket validation */
-
-    if (
-        isNaN(tickets) ||
-        tickets < 1 ||
-        tickets > 6
-    ) {
-
-        alert(
-            "Please select between 1 and 6 tickets."
-        );
-
-        return;
-    }
-
-
-    /* Seat validation */
-
-    if (
-        selectedSeats.length !== tickets
-    ) {
-
-        alert(
-            "Please select exactly " +
-            tickets +
-            " seat(s)."
-        );
-
-        return;
-    }
-
-
-    /* Get existing booked seats */
-
-    const key =
-        getBookingKey();
-
-
-    const allBookings =
-        JSON.parse(
-            localStorage.getItem(
-                "bookedSeats"
-            )
-        ) || {};
-
-
-    if (!allBookings[key]) {
-
-        allBookings[key] = [];
-
-    }
-
-
-    /* Check if seat already booked */
-
-    const conflict =
-        selectedSeats.some(
-            function (seat) {
-
-                return allBookings[key]
-                    .includes(seat);
-
-            }
-        );
-
-
-    if (conflict) {
-
-        alert(
-            "One or more selected seats are already booked."
-        );
-
-        loadBookedSeats();
-
-        return;
-    }
-
-
-    /* Save booked seats */
-
-    allBookings[key] =
-        allBookings[key].concat(
-            selectedSeats
-        );
-
-
-    localStorage.setItem(
-        "bookedSeats",
-        JSON.stringify(
-            allBookings
-        )
-    );
-
-
-    /* Calculate total */
-
-    const price =
-        getMoviePrice(movie);
-
-    const total =
-        price * tickets;
-
-
-    /* Create booking ID */
-
-    const bookingId =
-        "CM" + Date.now();
-
-
-    /* Create booking object */
-
-    const booking = {
-
-        id: bookingId,
-
-        movie: movie,
-
-        date: date,
-
-        time: time,
-
-        seats: selectedSeats,
-
-        tickets: tickets,
-
-        total: total
-
-    };
-
-
-    /* Save last booking */
-
-    localStorage.setItem(
-        "lastBooking",
-        JSON.stringify(
-            booking
-        )
-    );
-
-
-    /* Go to confirmation page */
-
-    window.location.href =
-        "confirmation.html";
-}
-
-
-/* =========================================
+/* =====================================
    PAGE LOAD
-   ========================================= */
+===================================== */
 
 document.addEventListener(
     "DOMContentLoaded",
     function () {
 
-
-        /* BOOKING DATE */
-
-        const dateInput =
+        const registerForm =
             document.getElementById(
-                "bookingDate"
+                "registerForm"
             );
 
-
-        if (dateInput) {
-
-            const today =
-                getTodayDate();
-
-            const lastDate =
-                getDateAfterDays(2);
-
-
-            /* Only today + next 2 days */
-
-            dateInput.min =
-                today;
-
-            dateInput.max =
-                lastDate;
-
-
-            /* Replace old date */
-
-            if (
-                !isValidBookingDate(
-                    dateInput.value
-                )
-            ) {
-
-                dateInput.value =
-                    today;
-
-            }
-
-
-            /* Date changed */
-
-            dateInput.addEventListener(
-                "change",
-                function () {
-
-                    if (
-                        !isValidBookingDate(
-                            this.value
-                        )
-                    ) {
-
-                        alert(
-                            "Please select today or one of the next 2 days."
-                        );
-
-                        this.value =
-                            getTodayDate();
-
-                    }
-
-
-                    loadBookedSeats();
-
-                }
-            );
-
+        if (registerForm) {
+            setupRegister();
         }
 
 
-        /* MOVIE SELECT */
+        const loginForm =
+            document.getElementById(
+                "loginForm"
+            );
+
+        if (loginForm) {
+            setupLogin();
+        }
+
+
+        const movieList =
+            document.getElementById(
+                "movieList"
+            );
+
+        if (movieList) {
+            loadMovies();
+        }
+
+
+        const bookingForm =
+            document.getElementById(
+                "movieSelect"
+            );
+
+        if (bookingForm) {
+            setupBooking();
+        }
+
+
+        const bookingDetails =
+            document.getElementById(
+                "bookingDetails"
+            );
+
+        if (bookingDetails) {
+            loadConfirmation();
+        }
+
+    }
+);
+
+
+/* =====================================
+   REGISTER
+===================================== */
+
+function setupRegister() {
+
+    const form =
+        document.getElementById(
+            "registerForm"
+        );
+
+    form.addEventListener(
+        "submit",
+        async function (event) {
+
+            event.preventDefault();
+
+
+            const password =
+                form.querySelector(
+                    '[name="password"]'
+                ).value;
+
+
+            const confirmPassword =
+                form.querySelector(
+                    '[name="confirmPassword"]'
+                ).value;
+
+
+            const message =
+                document.getElementById(
+                    "registerMsg"
+                );
+
+
+            if (
+                password !==
+                confirmPassword
+            ) {
+
+                message.textContent =
+                    "Passwords do not match.";
+
+                message.className =
+                    "message error";
+
+                return;
+            }
+
+
+            const formData =
+                new FormData(form);
+
+
+            try {
+
+                const response =
+                    await fetch(
+                        API + "register.php",
+                        {
+                            method: "POST",
+                            body: formData
+                        }
+                    );
+
+
+                const data =
+                    await response.json();
+
+
+                message.textContent =
+                    data.message;
+
+
+                if (data.success) {
+
+                    message.className =
+                        "message success";
+
+                    form.reset();
+
+                } else {
+
+                    message.className =
+                        "message error";
+                }
+
+
+            } catch (error) {
+
+                console.log(error);
+
+                message.textContent =
+                    "Unable to connect to PHP.";
+
+                message.className =
+                    "message error";
+            }
+
+        }
+    );
+}
+
+
+/* =====================================
+   LOGIN
+===================================== */
+
+function setupLogin() {
+
+    const form =
+        document.getElementById(
+            "loginForm"
+        );
+
+
+    form.addEventListener(
+        "submit",
+        async function (event) {
+
+            event.preventDefault();
+
+
+            const message =
+                document.getElementById(
+                    "loginMsg"
+                );
+
+
+            const formData =
+                new FormData(form);
+
+
+            try {
+
+                const response =
+                    await fetch(
+                        API + "login.php",
+                        {
+                            method: "POST",
+                            body: formData
+                        }
+                    );
+
+
+                const data =
+                    await response.json();
+
+
+                message.textContent =
+                    data.message;
+
+
+                if (data.success) {
+
+                    message.className =
+                        "message success";
+
+
+                    setTimeout(
+                        function () {
+
+                            window.location =
+                                "movies.html";
+
+                        },
+                        700
+                    );
+
+                } else {
+
+                    message.className =
+                        "message error";
+                }
+
+
+            } catch (error) {
+
+                console.log(error);
+
+                message.textContent =
+                    "Unable to connect to PHP.";
+
+                message.className =
+                    "message error";
+            }
+
+        }
+    );
+}
+
+
+/* =====================================
+   GET MOVIES FROM DATABASE
+===================================== */
+
+async function loadMovies() {
+
+    const box =
+        document.getElementById(
+            "movieList"
+        );
+
+
+    try {
+
+        const response =
+            await fetch(
+                API + "get_movies.php"
+            );
+
+
+        const data =
+            await response.json();
+
+
+        if (!data.success) {
+
+            box.innerHTML =
+                "<p>Unable to load movies.</p>";
+
+            return;
+        }
+
+
+        movies =
+            data.movies;
+
+
+        box.innerHTML = "";
+
+
+        movies.forEach(
+            function (movie) {
+
+                let image =
+                    "images/sita-ramam.jpg";
+
+
+                if (
+                    movie.name ===
+                    "Avengers: Doomsday"
+                ) {
+
+                    image =
+                        "images/avengers.jpg";
+                }
+
+
+                if (
+                    movie.name ===
+                    "The Conjuring"
+                ) {
+
+                    image =
+                        "images/conjuring.jpg";
+                }
+
+
+                box.innerHTML += `
+
+                    <div class="movie-card">
+
+                        <img
+                            src="${image}"
+                            alt="${movie.name}"
+                        >
+
+                        <div class="movie-info">
+
+                            <h2>
+                                ${movie.name}
+                            </h2>
+
+                            <p class="price">
+                                ₹${movie.price}
+                            </p>
+
+                            <button
+                                class="btn full"
+                                onclick="selectMovie(${movie.id})">
+
+                                Book Now
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                `;
+            }
+        );
+
+
+    } catch (error) {
+
+        console.log(error);
+
+        box.innerHTML =
+            "<p>PHP connection error.</p>";
+    }
+}
+
+
+/* =====================================
+   SELECT MOVIE
+===================================== */
+
+function selectMovie(id) {
+
+    window.location =
+        "booking.html?movie=" + id;
+}
+
+
+/* =====================================
+   BOOKING SETUP
+===================================== */
+
+async function setupBooking() {
+
+    try {
+
+        const response =
+            await fetch(
+                API + "get_movies.php"
+            );
+
+
+        const data =
+            await response.json();
+
+
+        movies =
+            data.movies;
+
 
         const movieSelect =
             document.getElementById(
@@ -1160,161 +411,667 @@ document.addEventListener(
             );
 
 
-        if (movieSelect) {
-
-            const savedMovie =
-                localStorage.getItem(
-                    "selectedMovie"
-                );
+        movieSelect.innerHTML = "";
 
 
-            if (savedMovie) {
+        movies.forEach(
+            function (movie) {
 
-                movieSelect.value =
-                    savedMovie;
+                movieSelect.innerHTML += `
 
+                    <option value="${movie.id}">
 
-                localStorage.removeItem(
-                    "selectedMovie"
-                );
+                        ${movie.name}
 
+                    </option>
+
+                `;
             }
+        );
 
 
-            movieSelect.addEventListener(
+        /* MOVIE FROM URL */
+
+        const params =
+            new URLSearchParams(
+                window.location.search
+            );
+
+
+        const movieId =
+            params.get("movie");
+
+
+        if (movieId) {
+
+            movieSelect.value =
+                movieId;
+        }
+
+
+        /* DATE */
+
+        const dateInput =
+            document.getElementById(
+                "bookingDate"
+            );
+
+
+        const today =
+            new Date();
+
+
+        const maxDate =
+            new Date();
+
+
+        maxDate.setDate(
+            maxDate.getDate() + 2
+        );
+
+
+        dateInput.min =
+            formatDate(today);
+
+
+        dateInput.max =
+            formatDate(maxDate);
+
+
+        dateInput.value =
+            formatDate(today);
+
+
+        /* EVENTS */
+
+        movieSelect.addEventListener(
+            "change",
+            renderSeats
+        );
+
+
+        dateInput.addEventListener(
+            "change",
+            renderSeats
+        );
+
+
+        document
+            .getElementById("showTime")
+            .addEventListener(
                 "change",
-                function () {
+                renderSeats
+            );
 
-                    selectedSeats = [];
 
-                    calculatePrice();
+        document
+            .getElementById("tickets")
+            .addEventListener(
+                "change",
+                renderSeats
+            );
 
-                    loadBookedSeats();
+
+        document
+            .getElementById("confirmBtn")
+            .addEventListener(
+                "click",
+                saveBooking
+            );
+
+
+        renderSeats();
+
+
+    } catch (error) {
+
+        console.log(error);
+    }
+}
+
+
+/* =====================================
+   DATE FORMAT
+===================================== */
+
+function formatDate(date) {
+
+    const year =
+        date.getFullYear();
+
+
+    const month =
+        String(
+            date.getMonth() + 1
+        ).padStart(2, "0");
+
+
+    const day =
+        String(
+            date.getDate()
+        ).padStart(2, "0");
+
+
+    return (
+        year +
+        "-" +
+        month +
+        "-" +
+        day
+    );
+}
+
+
+/* =====================================
+   GET CURRENT MOVIE
+===================================== */
+
+function getCurrentMovie() {
+
+    const id =
+        Number(
+            document.getElementById(
+                "movieSelect"
+            ).value
+        );
+
+
+    return movies.find(
+        function (movie) {
+
+            return Number(movie.id) === id;
+
+        }
+    );
+}
+
+
+/* =====================================
+   DISPLAY SEATS
+===================================== */
+
+async function renderSeats() {
+
+    const movie =
+        getCurrentMovie();
+
+
+    if (!movie) {
+        return;
+    }
+
+
+    const date =
+        document.getElementById(
+            "bookingDate"
+        ).value;
+
+
+    const time =
+        document.getElementById(
+            "showTime"
+        ).value;
+
+
+    const tickets =
+        Number(
+            document.getElementById(
+                "tickets"
+            ).value
+        );
+
+
+    document.getElementById(
+        "ticketPrice"
+    ).textContent =
+        Number(movie.price).toFixed(0);
+
+
+    document.getElementById(
+        "totalPrice"
+    ).textContent =
+        (
+            Number(movie.price) *
+            tickets
+        ).toFixed(0);
+
+
+    /* GET BOOKED SEATS */
+
+    const url =
+        API +
+        "get_seats.php" +
+        "?movie_id=" +
+        movie.id +
+        "&booking_date=" +
+        date +
+        "&show_time=" +
+        encodeURIComponent(time);
+
+
+    try {
+
+        const response =
+            await fetch(url);
+
+
+        const data =
+            await response.json();
+
+
+        const booked =
+            data.booked || [];
+
+
+        selectedSeats =
+            selectedSeats.filter(
+                function (seat) {
+
+                    return !booked.includes(
+                        seat
+                    );
 
                 }
             );
 
-        }
 
-
-        /* SHOW TIME */
-
-        const showTime =
-            document.getElementById(
-                "showTime"
-            );
-
-
-        if (showTime) {
-
-            showTime.addEventListener(
-                "change",
-                function () {
-
-                    selectedSeats = [];
-
-                    loadBookedSeats();
-
-                }
-            );
-
-        }
-
-
-        /* TICKET COUNT */
-
-        const ticketCount =
-            document.getElementById(
-                "ticketCount"
-            );
-
-
-        if (ticketCount) {
-
-            ticketCount.addEventListener(
-                "change",
-                ticketChanged
-            );
-
-        }
-
-
-        /* CREATE SEATS */
-
-        const seatContainer =
+        const container =
             document.getElementById(
                 "seatContainer"
             );
 
 
-        if (seatContainer) {
+        container.innerHTML = "";
 
-            createSeats();
 
-            calculatePrice();
+        for (
+            const row of "ABCDEFGH"
+        ) {
 
+            const rowDiv =
+                document.createElement(
+                    "div"
+                );
+
+
+            rowDiv.className =
+                "seat-row";
+
+
+            for (
+                let number = 1;
+                number <= 12;
+                number++
+            ) {
+
+                const seat =
+                    row + number;
+
+
+                const button =
+                    document.createElement(
+                        "button"
+                    );
+
+
+                button.type =
+                    "button";
+
+
+                button.textContent =
+                    number;
+
+
+                button.className =
+                    "seat";
+
+
+                if (
+                    booked.includes(
+                        seat
+                    )
+                ) {
+
+                    button.classList.add(
+                        "booked"
+                    );
+
+                    button.disabled =
+                        true;
+                }
+
+
+                if (
+                    selectedSeats.includes(
+                        seat
+                    )
+                ) {
+
+                    button.classList.add(
+                        "selected"
+                    );
+                }
+
+
+                button.onclick =
+                    function () {
+
+                        toggleSeat(seat);
+
+                    };
+
+
+                rowDiv.appendChild(
+                    button
+                );
+            }
+
+
+            container.appendChild(
+                rowDiv
+            );
         }
 
 
-        /* CONFIRMATION PAGE */
+        document.getElementById(
+            "seatMsg"
+        ).textContent =
+            selectedSeats.length +
+            " / " +
+            tickets +
+            " seat(s) selected";
 
-        const booking =
-            JSON.parse(
-                localStorage.getItem(
-                    "lastBooking"
-                )
+
+    } catch (error) {
+
+        console.log(error);
+    }
+}
+
+
+/* =====================================
+   SELECT / UNSELECT SEAT
+===================================== */
+
+function toggleSeat(seat) {
+
+    const tickets =
+        Number(
+            document.getElementById(
+                "tickets"
+            ).value
+        );
+
+
+    if (
+        selectedSeats.includes(
+            seat
+        )
+    ) {
+
+        selectedSeats =
+            selectedSeats.filter(
+                function (item) {
+
+                    return item !== seat;
+
+                }
             );
 
 
+    } else {
+
         if (
-            booking &&
-            document.getElementById(
-                "bookingId"
-            )
+            selectedSeats.length >=
+            tickets
         ) {
 
             document.getElementById(
-                "bookingId"
+                "seatMsg"
             ).textContent =
-                booking.id;
+                "You can select only " +
+                tickets +
+                " seat(s).";
 
-
-            document.getElementById(
-                "confirmMovie"
-            ).textContent =
-                booking.movie;
-
-
-            document.getElementById(
-                "confirmDate"
-            ).textContent =
-                booking.date;
-
-
-            document.getElementById(
-                "confirmTime"
-            ).textContent =
-                booking.time;
-
-
-            document.getElementById(
-                "confirmSeats"
-            ).textContent =
-                booking.seats.join(", ");
-
-
-            document.getElementById(
-                "confirmTickets"
-            ).textContent =
-                booking.tickets;
-
-
-            document.getElementById(
-                "confirmTotal"
-            ).textContent =
-                "₹" + booking.total;
-
+            return;
         }
 
+
+        selectedSeats.push(
+            seat
+        );
     }
-);
+
+
+    renderSeats();
+}
+
+
+/* =====================================
+   SAVE BOOKING
+===================================== */
+
+async function saveBooking() {
+
+    const tickets =
+        Number(
+            document.getElementById(
+                "tickets"
+            ).value
+        );
+
+
+    const message =
+        document.getElementById(
+            "seatMsg"
+        );
+
+
+    if (
+        selectedSeats.length !==
+        tickets
+    ) {
+
+        message.textContent =
+            "Please select exactly " +
+            tickets +
+            " seat(s).";
+
+        return;
+    }
+
+
+    const formData =
+        new FormData();
+
+
+    formData.append(
+        "movie_id",
+        document.getElementById(
+            "movieSelect"
+        ).value
+    );
+
+
+    formData.append(
+        "booking_date",
+        document.getElementById(
+            "bookingDate"
+        ).value
+    );
+
+
+    formData.append(
+        "show_time",
+        document.getElementById(
+            "showTime"
+        ).value
+    );
+
+
+    formData.append(
+        "tickets",
+        tickets
+    );
+
+
+    formData.append(
+        "seats",
+        selectedSeats.join(",")
+    );
+
+
+    try {
+
+        const response =
+            await fetch(
+                API + "save_booking.php",
+                {
+                    method: "POST",
+                    body: formData
+                }
+            );
+
+
+        const data =
+            await response.json();
+
+
+        if (data.success) {
+
+            window.location =
+                "confirmation.html?id=" +
+                data.booking_id;
+
+
+        } else {
+
+            message.textContent =
+                data.message;
+
+            selectedSeats = [];
+
+            renderSeats();
+        }
+
+
+    } catch (error) {
+
+        console.log(error);
+
+        message.textContent =
+            "Unable to connect to PHP.";
+    }
+}
+
+
+/* =====================================
+   CONFIRMATION
+===================================== */
+
+async function loadConfirmation() {
+
+    const params =
+        new URLSearchParams(
+            window.location.search
+        );
+
+
+    const id =
+        params.get("id");
+
+
+    const box =
+        document.getElementById(
+            "bookingDetails"
+        );
+
+
+    if (!id) {
+
+        box.textContent =
+            "Booking ID not found.";
+
+        return;
+    }
+
+
+    try {
+
+        const response =
+            await fetch(
+                API +
+                "get_booking.php?id=" +
+                id
+            );
+
+
+        const data =
+            await response.json();
+
+
+        if (!data.success) {
+
+            box.textContent =
+                data.message;
+
+            return;
+        }
+
+
+        const booking =
+            data.booking;
+
+
+        box.innerHTML = `
+
+            <div class="details">
+
+                <p>
+                    <b>Booking ID:</b>
+                    #${booking.id}
+                </p>
+
+                <p>
+                    <b>Movie:</b>
+                    ${booking.movie_name}
+                </p>
+
+                <p>
+                    <b>Date:</b>
+                    ${booking.booking_date}
+                </p>
+
+                <p>
+                    <b>Show Time:</b>
+                    ${booking.show_time}
+                </p>
+
+                <p>
+                    <b>Seats:</b>
+                    ${booking.seats}
+                </p>
+
+                <p>
+                    <b>Tickets:</b>
+                    ${booking.tickets}
+                </p>
+
+                <p>
+                    <b>Total:</b>
+                    ₹${booking.total}
+                </p>
+
+            </div>
+
+        `;
+
+
+    } catch (error) {
+
+        console.log(error);
+
+        box.textContent =
+            "Unable to retrieve booking.";
+    }
+}

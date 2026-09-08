@@ -2,50 +2,150 @@
 
 include "db.php";
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+header("Content-Type: application/json");
 
-    $name = $_POST["name"];
-    $username = $_POST["username"];
-    $email = $_POST["email"];
-    $password = $_POST["password"];
 
-    // Check whether username already exists
-    $check = "SELECT id FROM users WHERE username = ?";
-    $stmt = mysqli_prepare($conn, $check);
-    mysqli_stmt_bind_param($stmt, "s", $username);
-    mysqli_stmt_execute($stmt);
-    mysqli_stmt_store_result($stmt);
+$name =
+    trim($_POST["name"] ?? "");
 
-    if (mysqli_stmt_num_rows($stmt) > 0) {
-        echo "Username already exists!";
-        exit;
-    }
+$username =
+    trim($_POST["username"] ?? "");
 
-    // Securely hash password
-    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+$email =
+    trim($_POST["email"] ?? "");
 
-    // Insert user
-    $sql = "INSERT INTO users (name, username, email, password)
-            VALUES (?, ?, ?, ?)";
+$password =
+    $_POST["password"] ?? "";
 
-    $stmt = mysqli_prepare($conn, $sql);
-    mysqli_stmt_bind_param(
-        $stmt,
-        "ssss",
-        $name,
-        $username,
+
+if (
+    $name === "" ||
+    $username === "" ||
+    $email === "" ||
+    $password === ""
+) {
+
+    echo json_encode([
+        "success" => false,
+        "message" => "Please fill all fields"
+    ]);
+
+    exit;
+}
+
+
+if (
+    !filter_var(
         $email,
-        $hashedPassword
+        FILTER_VALIDATE_EMAIL
+    )
+) {
+
+    echo json_encode([
+        "success" => false,
+        "message" => "Invalid email"
+    ]);
+
+    exit;
+}
+
+
+if (strlen($password) < 6) {
+
+    echo json_encode([
+        "success" => false,
+        "message" =>
+            "Password must contain at least 6 characters"
+    ]);
+
+    exit;
+}
+
+
+/* CHECK USER */
+
+$stmt = mysqli_prepare(
+    $conn,
+    "SELECT id
+     FROM users
+     WHERE username = ?
+     OR email = ?"
+);
+
+mysqli_stmt_bind_param(
+    $stmt,
+    "ss",
+    $username,
+    $email
+);
+
+mysqli_stmt_execute($stmt);
+
+$result =
+    mysqli_stmt_get_result($stmt);
+
+
+if (
+    mysqli_num_rows($result) > 0
+) {
+
+    echo json_encode([
+        "success" => false,
+        "message" =>
+            "Username or email already exists"
+    ]);
+
+    exit;
+}
+
+
+/* HASH PASSWORD */
+
+$hashedPassword =
+    password_hash(
+        $password,
+        PASSWORD_DEFAULT
     );
 
-    if (mysqli_stmt_execute($stmt)) {
-        echo "Registration successful!";
-    } else {
-        echo "Registration failed!";
-    }
+
+/* INSERT DATA */
+
+$stmt = mysqli_prepare(
+    $conn,
+
+    "INSERT INTO users
+    (name, username, email, password)
+    VALUES (?, ?, ?, ?)"
+);
+
+
+mysqli_stmt_bind_param(
+    $stmt,
+    "ssss",
+    $name,
+    $username,
+    $email,
+    $hashedPassword
+);
+
+
+if (
+    mysqli_stmt_execute($stmt)
+) {
+
+    echo json_encode([
+        "success" => true,
+        "message" =>
+            "Account created successfully"
+    ]);
 
 } else {
-    echo "Invalid request!";
+
+    echo json_encode([
+        "success" => false,
+        "message" =>
+            "Registration failed"
+    ]);
 }
 
 ?>

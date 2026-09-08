@@ -5,8 +5,9 @@
 
     <meta charset="UTF-8">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
 
     <title>CineMax - Movies</title>
 
@@ -18,7 +19,7 @@
 
 <header>
 
-    <div class="logo">🎬 CineMax</div>
+    <div class="logo">CineMax</div>
 
     <nav>
 
@@ -28,176 +29,46 @@
 
         <a href="booking.html">Booking</a>
 
-        <button id="logoutBtn" onclick="logoutUser()">Logout</button>
-
     </nav>
 
 </header>
 
 
-<section class="page-heading">
+<section class="page-title">
 
-    <p class="section-small-title">
+    <span class="tag">
         NOW SHOWING
-    </p>
+    </span>
 
-    <h1>Choose Your Movie</h1>
+    <h1>
+        Available Movies
+    </h1>
 
     <p>
-        Select a movie and book your favourite seats.
+        Movies are retrieved from MySQL
+        using PHP.
     </p>
 
 </section>
 
 
-<section class="movies-container">
+<section
+    id="movieList"
+    class="movie-grid">
 
-
-    <!-- MOVIE 1 -->
-
-    <div class="movie-card">
-
-        <div class="poster-box">
-
-            <img
-                src="images/avengers.jpg"
-                alt="Avengers Doomsday"
-            >
-
-            <span class="movie-tag">
-                ACTION
-            </span>
-
-        </div>
-
-        <div class="movie-info">
-
-            <h2>Avengers: Doomsday</h2>
-
-            <p>
-                An exciting superhero adventure
-                filled with action.
-            </p>
-
-            <div class="movie-bottom">
-
-                <strong>&#8377;250</strong>
-
-                <button
-                    class="main-btn"
-                    onclick="selectMovie('Avengers: Doomsday')"
-                >
-                    Book Now
-                </button>
-
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <!-- MOVIE 2 -->
-
-    <div class="movie-card">
-
-        <div class="poster-box">
-
-            <img
-                src="images/conjuring.jpg"
-                alt="The Conjuring"
-            >
-
-            <span class="movie-tag">
-                HORROR
-            </span>
-
-        </div>
-
-        <div class="movie-info">
-
-            <h2>The Conjuring</h2>
-
-            <p>
-                A thrilling supernatural horror
-                movie experience.
-            </p>
-
-            <div class="movie-bottom">
-
-                <strong>&#8377;200</strong>
-
-                <button
-                    class="main-btn"
-                    onclick="selectMovie('The Conjuring')"
-                >
-                    Book Now
-                </button>
-
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <!-- MOVIE 3 -->
-
-    <div class="movie-card">
-
-        <div class="poster-box">
-
-            <img
-                src="images/sita-ramam.jpg"
-                alt="Sita Ramam"
-            >
-
-            <span class="movie-tag">
-                DRAMA
-            </span>
-
-        </div>
-
-        <div class="movie-info">
-
-            <h2>Sita Ramam</h2>
-
-            <p>
-                A beautiful emotional drama
-                movie experience.
-            </p>
-
-            <div class="movie-bottom">
-
-                <strong>&#8377;180</strong>
-
-                <button
-                    class="main-btn"
-                    onclick="selectMovie('Sita Ramam')"
-                >
-                    Book Now
-                </button>
-
-            </div>
-
-        </div>
-
-    </div>
+    <p>
+        Loading movies...
+    </p>
 
 </section>
 
 
 <footer>
-
-    <p>
-        © 2026 CineMax Movie Booking System
-    </p>
-
+    © 2026 CineMax Movie Booking
 </footer>
 
 
 <script src="script.js"></script>
 
 </body>
-
 </html>

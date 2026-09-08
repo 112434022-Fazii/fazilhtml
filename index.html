@@ -3,9 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>CineMax - Home</title>
 
@@ -16,35 +14,36 @@
 
 <header>
 
-    <div class="logo">🎬 CineMax</div>
+    <div class="logo">CineMax</div>
 
     <nav>
         <a href="index.html">Home</a>
         <a href="movies.html">Movies</a>
         <a href="booking.html">Booking</a>
-        <button id="logoutBtn" onclick="logoutUser()">Logout</button>
     </nav>
 
 </header>
 
 
-<!-- HERO -->
-
 <section class="hero">
 
     <div class="hero-content">
 
-        <p class="small-title">WELCOME TO CINEMAX</p>
+        <span class="tag">
+            MOVIE TICKET BOOKING
+        </span>
 
-        <h1>Movie Night Starts Here</h1>
+        <h1>
+            Welcome to CineMax
+        </h1>
 
         <p>
-            Book your favourite movie, choose your seats
-            and enjoy a great cinema experience.
+            Book your favourite movies,
+            select your seats and enjoy your show.
         </p>
 
-        <a href="movies.html" class="main-btn">
-            Explore Movies
+        <a href="movies.html" class="btn">
+            View Movies
         </a>
 
     </div>
@@ -52,166 +51,144 @@
 </section>
 
 
-<!-- LOGIN SECTION -->
-
-<section class="login-section">
+<section class="auth-section">
 
     <!-- LOGIN -->
 
-    <div class="login-box">
+    <div class="card">
 
         <h2>Login</h2>
 
-        <p class="box-text">
-            Login to book your movie tickets.
-        </p>
-
-        <form onsubmit="loginUser(event)">
+        <form id="loginForm" method="post">
 
             <input
                 type="text"
-                id="loginUsername"
+                name="username"
                 placeholder="Username"
                 required
             >
 
             <input
                 type="password"
-                id="loginPassword"
+                name="password"
                 placeholder="Password"
                 required
             >
 
-            <button type="submit" class="main-btn full-btn">
-                Login
-            </button>
+            <button
+                type="submit"
+                class="btn full">
 
-            <p id="loginMessage"></p>
+                Login
+
+            </button>
 
         </form>
 
-        <button
-            class="create-btn"
-            onclick="showRegister()"
-        >
-            Create New Account
-        </button>
+        <p id="loginMsg" class="message"></p>
 
     </div>
 
 
     <!-- REGISTER -->
 
-    <div
-        class="login-box register-box"
-        id="registerBox"
-    >
+    <div class="card">
 
-        <h2>Create Account</h2>
+        <h2>Create New Account</h2>
 
-        <p class="box-text">
-            Create your CineMax account.
-        </p>
-
-        <form onsubmit="registerUser(event)">
+        <form id="registerForm" method="post">
 
             <input
                 type="text"
-                id="registerName"
+                name="name"
                 placeholder="Full Name"
                 required
             >
 
             <input
                 type="text"
-                id="registerUsername"
+                name="username"
                 placeholder="Username"
                 required
             >
 
             <input
                 type="email"
-                id="registerEmail"
+                name="email"
                 placeholder="Email"
                 required
             >
 
             <input
                 type="password"
-                id="registerPassword"
+                name="password"
                 placeholder="Password"
+                minlength="6"
                 required
             >
 
             <input
                 type="password"
-                id="confirmPassword"
+                name="confirmPassword"
                 placeholder="Confirm Password"
+                minlength="6"
                 required
             >
 
-            <button type="submit" class="main-btn full-btn">
+            <button
+                type="submit"
+                class="btn full">
+
                 Create Account
+
             </button>
 
-            <p id="registerMessage"></p>
-
         </form>
+
+        <p id="registerMsg" class="message"></p>
 
     </div>
 
 </section>
 
 
-<!-- FEATURES -->
-
 <section class="features">
 
-    <p class="section-small-title">
-        WHY CINEMAX?
-    </p>
+    <h2>Why Choose CineMax?</h2>
 
-    <h2>Everything You Need for Movie Booking</h2>
+    <div class="feature-grid">
 
-    <div class="feature-container">
+        <div class="feature">
 
-        <div class="feature-card">
-
-            <div class="feature-icon">🎟️</div>
-
-            <h3>Easy Booking</h3>
+            <h3>🎬 Movies</h3>
 
             <p>
-                Book your favourite movies quickly
-                and easily.
+                Movie details are retrieved
+                from MySQL database.
             </p>
 
         </div>
 
 
-        <div class="feature-card">
+        <div class="feature">
 
-            <div class="feature-icon">🪑</div>
-
-            <h3>Choose Your Seat</h3>
+            <h3>💺 Seats</h3>
 
             <p>
-                Select the available seats you
-                want before booking.
+                Select available seats
+                for your movie.
             </p>
 
         </div>
 
 
-        <div class="feature-card">
+        <div class="feature">
 
-            <div class="feature-icon">🔒</div>
-
-            <h3>Simple & Secure</h3>
+            <h3>🗄️ Database</h3>
 
             <p>
-                Login validation keeps your
-                booking process simple.
+                User and booking details
+                are stored in MySQL.
             </p>
 
         </div>
@@ -222,16 +199,11 @@
 
 
 <footer>
-
-    <p>
-        © 2026 CineMax Movie Booking System
-    </p>
-
+    © 2026 CineMax Movie Booking
 </footer>
 
 
 <script src="script.js"></script>
 
 </body>
-
 </html>

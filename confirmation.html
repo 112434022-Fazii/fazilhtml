@@ -5,8 +5,9 @@
 
     <meta charset="UTF-8">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
 
     <title>CineMax - Confirmation</title>
 
@@ -18,116 +19,65 @@
 
 <header>
 
-    <div class="logo">🎬 CineMax</div>
+    <div class="logo">
+        CineMax
+    </div>
 
     <nav>
 
-        <a href="index.html">Home</a>
+        <a href="index.html">
+            Home
+        </a>
 
-        <a href="movies.html">Movies</a>
+        <a href="movies.html">
+            Movies
+        </a>
 
-        <a href="booking.html">Booking</a>
-
-        <button id="logoutBtn" onclick="logoutUser()">Logout</button>
+        <a href="booking.html">
+            Booking
+        </a>
 
     </nav>
 
 </header>
 
 
-<section class="confirmation-page">
+<section class="confirmation">
 
-    <div class="confirmation-box">
+    <div class="card">
 
         <div class="success-icon">
             ✓
         </div>
 
-        <h1>Booking Confirmed!</h1>
+        <span class="tag">
+            BOOKING SUCCESSFUL
+        </span>
+
+        <h1>
+            Booking Confirmed!
+        </h1>
 
         <p>
-            Your tickets have been booked successfully.
+            Your booking details are retrieved
+            from the MySQL database.
         </p>
 
 
-        <div class="ticket-card">
+        <div id="bookingDetails">
 
-            <div class="ticket-row">
-
-                <span>Booking ID</span>
-
-                <strong id="bookingId"></strong>
-
-            </div>
-
-            <div class="ticket-row">
-
-                <span>Movie</span>
-
-                <strong id="confirmMovie"></strong>
-
-            </div>
-
-            <div class="ticket-row">
-
-                <span>Date</span>
-
-                <strong id="confirmDate"></strong>
-
-            </div>
-
-            <div class="ticket-row">
-
-                <span>Show Time</span>
-
-                <strong id="confirmTime"></strong>
-
-            </div>
-
-            <div class="ticket-row">
-
-                <span>Seats</span>
-
-                <strong id="confirmSeats"></strong>
-
-            </div>
-
-            <div class="ticket-row">
-
-                <span>Tickets</span>
-
-                <strong id="confirmTickets"></strong>
-
-            </div>
-
-            <div class="ticket-row total-row">
-
-                <span>Total Amount</span>
-
-                <strong id="confirmTotal"></strong>
-
-            </div>
+            Loading booking details...
 
         </div>
 
 
-        <div class="confirmation-buttons">
+        <a
+            href="movies.html"
+            class="btn">
 
-            <a
-                href="movies.html"
-                class="main-btn"
-            >
-                Book Another Movie
-            </a>
+            Book Another Movie
 
-            <a
-                href="index.html"
-                class="home-link"
-            >
-                Back to Home
-            </a>
-
-        </div>
+        </a>
 
     </div>
 
@@ -135,16 +85,11 @@
 
 
 <footer>
-
-    <p>
-        © 2026 CineMax Movie Booking System
-    </p>
-
+    © 2026 CineMax Movie Booking
 </footer>
 
 
 <script src="script.js"></script>
 
 </body>
-
 </html>
