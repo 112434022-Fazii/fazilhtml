@@ -2,204 +2,740 @@
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0">
-
-    <title>CineMax - Booking</title>
+    <title>Cinemax - Select Seats</title>
 
     <link rel="stylesheet" href="style.css">
-
 </head>
 
 <body>
 
-<header>
+    <!-- Navigation -->
+    <nav class="navbar">
 
-    <div class="logo">CineMax</div>
+        <div class="logo">CINEMAX</div>
 
-    <nav>
-
-        <a href="index.html">Home</a>
-
-        <a href="movies.html">Movies</a>
-
-        <a href="booking.html">Booking</a>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="movies.html">Movies</a>
+        </div>
 
     </nav>
 
-</header>
+
+    <!-- Movie Information -->
+    <section class="booking-title">
+
+        <h1 id="movieName">Select Your Seats</h1>
+
+        <p>Choose your date, show time and seats</p>
+
+    </section>
 
 
-<section class="page-title">
+    <!-- Booking Section -->
+    <section class="booking-container">
 
-    <span class="tag">
-        BOOK YOUR TICKETS
-    </span>
+        <!-- Date Selection -->
+        <h3 class="section-title">Select Date</h3>
 
-    <h1>
-        Select Your Seats
-    </h1>
+        <div class="date-list">
 
-    <p>
-        Booking is available for today
-        and the next 2 days.
-    </p>
+            <button class="date active" data-date="2026-09-08">
+                <strong>08</strong>
+                <span>SEP</span>
+            </button>
 
-</section>
+            <button class="date" data-date="2026-09-09">
+                <strong>09</strong>
+                <span>SEP</span>
+            </button>
 
+            <button class="date" data-date="2026-09-10">
+                <strong>10</strong>
+                <span>SEP</span>
+            </button>
 
-<section class="booking-container">
+            <button class="date" data-date="2026-09-11">
+                <strong>11</strong>
+                <span>SEP</span>
+            </button>
 
-
-    <!-- BOOKING DETAILS -->
-
-    <div class="card">
-
-        <h2>Booking Details</h2>
-
-        <label>
-            Movie
-        </label>
-
-        <select
-            id="movieSelect"
-            required>
-        </select>
-
-
-        <label>
-            Booking Date
-        </label>
-
-        <input
-            type="date"
-            id="bookingDate"
-            required
-        >
-
-
-        <label>
-            Show Time
-        </label>
-
-        <select id="showTime">
-
-            <option value="10:00 AM">
-                10:00 AM
-            </option>
-
-            <option value="01:30 PM">
-                01:30 PM
-            </option>
-
-            <option value="04:30 PM">
-                04:30 PM
-            </option>
-
-            <option value="07:30 PM">
-                07:30 PM
-            </option>
-
-        </select>
-
-
-        <label>
-            Number of Tickets
-        </label>
-
-        <select id="tickets">
-
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-
-        </select>
-
-
-        <div class="price-box">
-
-            Ticket Price:
-            ₹<span id="ticketPrice">0</span>
-
-            <br><br>
-
-            Total:
-            ₹<span id="totalPrice">0</span>
+            <button class="date" data-date="2026-09-12">
+                <strong>12</strong>
+                <span>SEP</span>
+            </button>
 
         </div>
 
-    </div>
+
+        <!-- Show Time -->
+        <h3 class="section-title">Select Show Time</h3>
+
+        <div class="show-times">
+
+            <button class="show-time active">
+                10:00 AM
+            </button>
+
+            <button class="show-time">
+                01:30 PM
+            </button>
+
+            <button class="show-time">
+                04:30 PM
+            </button>
+
+            <button class="show-time">
+                07:30 PM
+            </button>
+
+            <button class="show-time">
+                10:30 PM
+            </button>
+
+        </div>
 
 
-    <!-- SEATS -->
-
-    <div class="card">
-
-        <h2>Select Seats</h2>
+        <!-- Seats -->
+        <h3 class="section-title">Select Your Seats</h3>
 
         <div class="screen">
             SCREEN
         </div>
 
 
-        <div class="legend">
+        <div class="seat-layout">
 
-            <span>
-                ⬜ Available
-            </span>
+            <!-- Row A -->
+            <div class="seat-row">
 
-            <span>
-                🟥 Selected
-            </span>
+                <span class="row-name">A</span>
 
-            <span>
-                ⬛ Booked
-            </span>
+                <button class="seat">A1</button>
+                <button class="seat">A2</button>
+                <button class="seat">A3</button>
+                <button class="seat">A4</button>
+                <button class="seat">A5</button>
+                <button class="seat">A6</button>
+                <button class="seat">A7</button>
+                <button class="seat">A8</button>
+
+            </div>
+
+
+            <!-- Row B -->
+            <div class="seat-row">
+
+                <span class="row-name">B</span>
+
+                <button class="seat">B1</button>
+                <button class="seat">B2</button>
+                <button class="seat">B3</button>
+                <button class="seat">B4</button>
+                <button class="seat">B5</button>
+                <button class="seat">B6</button>
+                <button class="seat">B7</button>
+                <button class="seat">B8</button>
+
+            </div>
+
+
+            <!-- Row C -->
+            <div class="seat-row">
+
+                <span class="row-name">C</span>
+
+                <button class="seat">C1</button>
+                <button class="seat">C2</button>
+                <button class="seat">C3</button>
+                <button class="seat">C4</button>
+                <button class="seat">C5</button>
+                <button class="seat">C6</button>
+                <button class="seat">C7</button>
+                <button class="seat">C8</button>
+
+            </div>
+
+
+            <!-- Row D -->
+            <div class="seat-row">
+
+                <span class="row-name">D</span>
+
+                <button class="seat">D1</button>
+                <button class="seat">D2</button>
+                <button class="seat">D3</button>
+                <button class="seat">D4</button>
+                <button class="seat">D5</button>
+                <button class="seat">D6</button>
+                <button class="seat">D7</button>
+                <button class="seat">D8</button>
+
+            </div>
+
+
+            <!-- Row E -->
+            <div class="seat-row">
+
+                <span class="row-name">E</span>
+
+                <button class="seat">E1</button>
+                <button class="seat">E2</button>
+                <button class="seat">E3</button>
+                <button class="seat">E4</button>
+                <button class="seat">E5</button>
+                <button class="seat">E6</button>
+                <button class="seat">E7</button>
+                <button class="seat">E8</button>
+
+            </div>
+
+
+            <!-- Row F -->
+            <div class="seat-row">
+
+                <span class="row-name">F</span>
+
+                <button class="seat">F1</button>
+                <button class="seat">F2</button>
+                <button class="seat">F3</button>
+                <button class="seat">F4</button>
+                <button class="seat">F5</button>
+                <button class="seat">F6</button>
+                <button class="seat">F7</button>
+                <button class="seat">F8</button>
+
+            </div>
 
         </div>
 
 
-        <div
-            id="seatContainer"
-            class="seat-map">
+        <!-- Seat Legend -->
+        <div class="seat-legend">
+
+            <div>
+                <span class="legend-box available"></span>
+                Available
+            </div>
+
+            <div>
+                <span class="legend-box selected"></span>
+                Selected
+            </div>
+
+            <div>
+                <span class="legend-box occupied"></span>
+                Occupied
+            </div>
+
         </div>
 
 
-        <p
-            id="seatMsg"
-            class="message">
+        <!-- Booking Summary -->
+        <div class="booking-summary">
 
-            Select your seats.
+            <div>
+                <span>Selected Seats</span>
+                <strong id="selectedSeats">None</strong>
+            </div>
 
-        </p>
+            <div>
+                <span>Number of Seats</span>
+                <strong id="seatCount">0</strong>
+            </div>
+
+            <div>
+                <span>Total Amount</span>
+                <strong id="totalAmount">₹0</strong>
+            </div>
+
+            <button id="continueButton">
+                Continue
+            </button>
+
+        </div>
+
+    </section>
 
 
-        <button
-            id="confirmBtn"
-            class="btn full">
+    <!-- Footer -->
+    <footer>
 
-            Confirm Booking
+        <p>© 2026 CINEMAX. All Rights Reserved.</p>
 
-        </button>
-
-    </div>
-
-</section>
+    </footer>
 
 
-<footer>
-    © 2026 CineMax Movie Booking
-</footer>
+    <script>
+
+        /* =========================
+           GET MOVIE FROM URL
+        ========================= */
+
+        const urlParams =
+            new URLSearchParams(window.location.search);
+
+        const movie =
+            urlParams.get("movie");
 
 
-<script src="script.js"></script>
+        if (movie) {
+
+            document.getElementById("movieName").textContent =
+                movie + " - Select Seats";
+
+        }
+
+
+        /* =========================
+           DATE SELECTION
+        ========================= */
+
+        const dates =
+            document.querySelectorAll(".date");
+
+
+        dates.forEach(function(date) {
+
+            date.addEventListener("click", function() {
+
+                dates.forEach(function(item) {
+
+                    item.classList.remove("active");
+
+                });
+
+                date.classList.add("active");
+
+                loadBookedSeats();
+
+            });
+
+        });
+
+
+        /* =========================
+           TIME SELECTION
+        ========================= */
+
+        const times =
+            document.querySelectorAll(".show-time");
+
+
+        times.forEach(function(time) {
+
+            time.addEventListener("click", function() {
+
+                times.forEach(function(item) {
+
+                    item.classList.remove("active");
+
+                });
+
+                time.classList.add("active");
+
+                loadBookedSeats();
+
+            });
+
+        });
+
+
+        /* =========================
+           SEAT SELECTION
+        ========================= */
+
+        const seats =
+            document.querySelectorAll(".seat");
+
+        const selectedSeats =
+            document.getElementById("selectedSeats");
+
+        const seatCount =
+            document.getElementById("seatCount");
+
+        const totalAmount =
+            document.getElementById("totalAmount");
+
+
+        /* Movie prices */
+
+        let ticketPrice = 200;
+
+
+        if (movie === "Avengers: Doomsday") {
+
+            ticketPrice = 250;
+
+        } else if (movie === "The Conjuring") {
+
+            ticketPrice = 200;
+
+        } else if (movie === "Sita Ramam") {
+
+            ticketPrice = 180;
+
+        }
+
+
+        let selected = [];
+
+
+        /* =========================
+           LOAD OCCUPIED SEATS
+        ========================= */
+
+        function loadBookedSeats() {
+
+            const activeDate =
+                document.querySelector(".date.active");
+
+            const activeTime =
+                document.querySelector(".show-time.active");
+
+
+            if (!activeDate || !activeTime || !movie) {
+
+                return;
+
+            }
+
+
+            const bookingDate =
+                activeDate.dataset.date;
+
+
+            const showTime =
+                activeTime.textContent.trim();
+
+
+            const url =
+                "get_booked_seats.php?movie=" +
+                encodeURIComponent(movie) +
+                "&date=" +
+                encodeURIComponent(bookingDate) +
+                "&time=" +
+                encodeURIComponent(showTime);
+
+
+            fetch(url)
+
+                .then(response => response.json())
+
+                .then(bookedSeats => {
+
+                    seats.forEach(function(seat) {
+
+                        const seatNumber =
+                            seat.textContent.trim();
+
+
+                        seat.classList.remove("occupied");
+
+                        seat.disabled = false;
+
+
+                        if (
+                            bookedSeats.includes(seatNumber)
+                        ) {
+
+                            seat.classList.add("occupied");
+
+                            seat.disabled = true;
+
+
+                            seat.classList.remove("selected");
+
+
+                            selected =
+                                selected.filter(
+                                    function(item) {
+
+                                        return item !== seatNumber;
+
+                                    }
+                                );
+
+                        }
+
+                    });
+
+
+                    updateSummary();
+
+                })
+
+                .catch(error => {
+
+                    console.error(
+                        "Unable to load booked seats:",
+                        error
+                    );
+
+                });
+
+        }
+
+
+        /* =========================
+           SEAT CLICK
+        ========================= */
+
+        seats.forEach(function(seat) {
+
+            seat.addEventListener("click", function() {
+
+
+                /* Don't allow occupied seats */
+
+                if (seat.classList.contains("occupied")) {
+
+                    return;
+
+                }
+
+
+                /* Maximum 6 seats */
+
+                if (
+                    !seat.classList.contains("selected") &&
+                    selected.length >= 6
+                ) {
+
+                    alert(
+                        "You can select a maximum of 6 seats."
+                    );
+
+                    return;
+
+                }
+
+
+                seat.classList.toggle("selected");
+
+
+                const seatNumber =
+                    seat.textContent.trim();
+
+
+                if (seat.classList.contains("selected")) {
+
+                    selected.push(seatNumber);
+
+                } else {
+
+                    selected =
+                        selected.filter(
+                            function(item) {
+
+                                return item !== seatNumber;
+
+                            }
+                        );
+
+                }
+
+
+                updateSummary();
+
+            });
+
+        });
+
+
+        /* =========================
+           UPDATE SUMMARY
+        ========================= */
+
+        function updateSummary() {
+
+            if (selected.length === 0) {
+
+                selectedSeats.textContent = "None";
+
+            } else {
+
+                selectedSeats.textContent =
+                    selected.join(", ");
+
+            }
+
+
+            seatCount.textContent =
+                selected.length;
+
+
+            totalAmount.textContent =
+                "₹" + (selected.length * ticketPrice);
+
+        }
+
+
+        /* =========================
+           CONTINUE
+        ========================= */
+
+        document
+            .getElementById("continueButton")
+            .addEventListener("click", function() {
+
+
+                if (selected.length === 0) {
+
+                    alert(
+                        "Please select at least one seat."
+                    );
+
+                    return;
+
+                }
+
+
+                const activeDate =
+                    document.querySelector(".date.active");
+
+
+                const activeTime =
+                    document.querySelector(".show-time.active");
+
+
+                const bookingDate =
+                    activeDate.dataset.date;
+
+
+                const showTime =
+                    activeTime.textContent.trim();
+
+
+                const total =
+                    selected.length * ticketPrice;
+
+
+                /* Form Data */
+
+                const formData =
+                    new FormData();
+
+
+                formData.append(
+                    "movie",
+                    movie || "Movie"
+                );
+
+
+                formData.append(
+                    "date",
+                    bookingDate
+                );
+
+
+                formData.append(
+                    "time",
+                    showTime
+                );
+
+
+                formData.append(
+                    "seats",
+                    selected.join(",")
+                );
+
+
+                formData.append(
+                    "total",
+                    total
+                );
+
+
+                /* Save booking */
+
+                fetch("save_booking.php", {
+
+                    method: "POST",
+
+                    body: formData
+
+                })
+
+
+                .then(response => response.text())
+
+
+                .then(data => {
+
+                    if (
+                        data.includes(
+                            "Booking saved successfully!"
+                        )
+                    ) {
+
+
+                        const bookingData = {
+
+                            movie:
+                                movie || "Movie",
+
+                            date:
+                                bookingDate,
+
+                            time:
+                                showTime,
+
+                            seats:
+                                selected,
+
+                            tickets:
+                                selected.length,
+
+                            total:
+                                total
+
+                        };
+
+
+                        localStorage.setItem(
+                            "bookingData",
+                            JSON.stringify(bookingData)
+                        );
+
+
+                        window.location.href =
+                            "confirmation.html";
+
+
+                    } else {
+
+                        alert(data);
+
+                    }
+
+                })
+
+
+                .catch(error => {
+
+                    alert(
+                        "Unable to save booking."
+                    );
+
+                    console.error(error);
+
+                });
+
+            });
+
+
+        /* =========================
+           INITIAL LOAD
+        ========================= */
+
+        loadBookedSeats();
+
+    </script>
 
 </body>
+
 </html>

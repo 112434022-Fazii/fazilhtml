@@ -2,73 +2,143 @@
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0">
-
-    <title>CineMax - Movies</title>
+    <title>Cinemax - Movies</title>
 
     <link rel="stylesheet" href="style.css">
-
 </head>
 
 <body>
 
-<header>
+    <!-- Navigation -->
+    <nav class="navbar">
 
-    <div class="logo">CineMax</div>
+        <div class="logo">CINEMAX</div>
 
-    <nav>
-
-        <a href="index.html">Home</a>
-
-        <a href="movies.html">Movies</a>
-
-        <a href="booking.html">Booking</a>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="movies.html">Movies</a>
+            <a href="index.html#login">Login</a>
+        </div>
 
     </nav>
 
-</header>
+
+    <!-- Movies Header -->
+    <section class="movies-header">
+
+        <h1>Movies</h1>
+
+        <p>Choose your favourite movie and book your tickets.</p>
+
+    </section>
 
 
-<section class="page-title">
+    <!-- Movies -->
+    <section class="movies-section">
 
-    <span class="tag">
-        NOW SHOWING
-    </span>
-
-    <h1>
-        Available Movies
-    </h1>
-
-    <p>
-        Movies are retrieved from MySQL
-        using PHP.
-    </p>
-
-</section>
+        <div class="movie-grid">
 
 
-<section
-    id="movieList"
-    class="movie-grid">
+            <!-- Movie 1 -->
+            <div class="movie-card">
 
-    <p>
-        Loading movies...
-    </p>
+                <div class="movie-poster poster-one">
+                    <span>NOW SHOWING</span>
+                </div>
 
-</section>
+                <div class="movie-info">
+
+                    <h2>Avengers: Doomsday</h2>
+
+                    <p>Action • Adventure • Sci-Fi</p>
+
+                    <div class="movie-bottom">
+
+                        <span class="price">₹250</span>
+
+                        <a href="booking.html?movie=Avengers%3A%20Doomsday">
+                            <button>Book Now</button>
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
 
 
-<footer>
-    © 2026 CineMax Movie Booking
-</footer>
+            <!-- Movie 2 -->
+            <div class="movie-card">
+
+                <div class="movie-poster poster-two">
+                    <span>NOW SHOWING</span>
+                </div>
+
+                <div class="movie-info">
+
+                    <h2>The Conjuring</h2>
+
+                    <p>Horror • Mystery • Thriller</p>
+
+                    <div class="movie-bottom">
+
+                        <span class="price">₹200</span>
+
+                        <a href="booking.html?movie=The%20Conjuring">
+                            <button>Book Now</button>
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
 
 
-<script src="script.js"></script>
+            <!-- Movie 3 -->
+            <div class="movie-card">
+
+                <div class="movie-poster poster-three">
+                    <span>NOW SHOWING</span>
+                </div>
+
+                <div class="movie-info">
+
+                    <h2>Sita Ramam</h2>
+
+                    <p>Romance • Drama • Mystery</p>
+
+                    <div class="movie-bottom">
+
+                        <span class="price">₹180</span>
+
+                        <a href="booking.html?movie=Sita%20Ramam">
+                            <button>Book Now</button>
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+    <!-- Footer -->
+    <footer>
+
+        <p>© 2026 CINEMAX. All Rights Reserved.</p>
+
+    </footer>
+
 
 </body>
+
 </html>

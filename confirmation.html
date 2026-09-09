@@ -1,95 +1,159 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0">
-
-    <title>CineMax - Confirmation</title>
+    <title>Cinemax - Booking Confirmed</title>
 
     <link rel="stylesheet" href="style.css">
-
 </head>
 
 <body>
 
-<header>
+    <!-- Navigation -->
+    <nav class="navbar">
 
-    <div class="logo">
-        CineMax
-    </div>
+        <div class="logo">CINEMAX</div>
 
-    <nav>
-
-        <a href="index.html">
-            Home
-        </a>
-
-        <a href="movies.html">
-            Movies
-        </a>
-
-        <a href="booking.html">
-            Booking
-        </a>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="movies.html">Movies</a>
+        </div>
 
     </nav>
 
-</header>
+
+    <!-- Confirmation -->
+    <section class="confirmation-section">
+
+        <div class="confirmation-card">
+
+            <div class="success-icon">
+                ✓
+            </div>
+
+            <h1>Booking Confirmed!</h1>
+
+            <p class="confirmation-message">
+                Your movie tickets have been booked successfully.
+            </p>
 
 
-<section class="confirmation">
+            <div class="ticket">
 
-    <div class="card">
+                <div class="ticket-header">
+                    <span>CINEMAX</span>
+                    <span>BOOKING CONFIRMATION</span>
+                </div>
 
-        <div class="success-icon">
-            ✓
+
+                <div class="ticket-details">
+
+                    <div>
+                        <span>Movie</span>
+                        <strong id="movie"></strong>
+                    </div>
+
+                    <div>
+                        <span>Date</span>
+                        <strong id="date"></strong>
+                    </div>
+
+                    <div>
+                        <span>Show Time</span>
+                        <strong id="time"></strong>
+                    </div>
+
+                    <div>
+                        <span>Seats</span>
+                        <strong id="seats"></strong>
+                    </div>
+
+                    <div>
+                        <span>Number of Seats</span>
+                        <strong id="tickets"></strong>
+                    </div>
+
+                    <div class="ticket-total">
+                        <span>Total Amount</span>
+                        <strong id="total"></strong>
+                    </div>
+
+                </div>
+
+
+                <div class="ticket-footer">
+                    Please show this confirmation at the cinema.
+                </div>
+
+            </div>
+
+
+            <a href="movies.html">
+                <button class="home-button">
+                    Book Another Movie
+                </button>
+            </a>
+
         </div>
 
-        <span class="tag">
-            BOOKING SUCCESSFUL
-        </span>
-
-        <h1>
-            Booking Confirmed!
-        </h1>
-
-        <p>
-            Your booking details are retrieved
-            from the MySQL database.
-        </p>
+    </section>
 
 
-        <div id="bookingDetails">
+    <!-- Footer -->
+    <footer>
 
-            Loading booking details...
+        <p>© 2026 CINEMAX. All Rights Reserved.</p>
 
-        </div>
-
-
-        <a
-            href="movies.html"
-            class="btn">
-
-            Book Another Movie
-
-        </a>
-
-    </div>
-
-</section>
+    </footer>
 
 
-<footer>
-    © 2026 CineMax Movie Booking
-</footer>
+    <script>
+
+        const data =
+            JSON.parse(
+                localStorage.getItem("bookingData")
+            );
 
 
-<script src="script.js"></script>
+        if (data) {
+
+            document.getElementById("movie").textContent =
+                data.movie;
+
+            document.getElementById("date").textContent =
+                data.date;
+
+            document.getElementById("time").textContent =
+                data.time;
+
+            document.getElementById("seats").textContent =
+                data.seats.join(", ");
+
+            document.getElementById("tickets").textContent =
+                data.tickets;
+
+            document.getElementById("total").textContent =
+                "₹" + data.total;
+
+        } else {
+
+            document.querySelector(".confirmation-card").innerHTML =
+
+                "<h1>No Booking Found</h1>" +
+
+                "<p>Please make a booking first.</p>" +
+
+                '<a href="movies.html">' +
+                '<button class="home-button">' +
+                'Go to Movies' +
+                '</button>' +
+                '</a>';
+
+        }
+
+    </script>
 
 </body>
 </html>

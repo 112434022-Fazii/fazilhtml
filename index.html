@@ -5,205 +5,595 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>CineMax - Home</title>
+    <title>Cinemax - Movie Booking</title>
 
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<header>
+    <!-- =========================
+         NAVIGATION
+    ========================== -->
 
-    <div class="logo">CineMax</div>
+    <nav class="navbar">
 
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="movies.html">Movies</a>
-        <a href="booking.html">Booking</a>
+        <div class="logo">
+            CINEMAX
+        </div>
+
+        <div class="nav-links">
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="movies.html">
+                Movies
+            </a>
+
+            <a href="#login">
+                Login
+            </a>
+
+        </div>
+
     </nav>
 
-</header>
+
+    <!-- =========================
+         HERO SECTION
+    ========================== -->
+
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <small>
+                WELCOME TO CINEMAX
+            </small>
+
+            <h1>
+                Experience Movies
+                <br>
+                Like Never Before
+            </h1>
+
+            <p>
+                Book your favourite movies, choose your
+                preferred seats, and enjoy an unforgettable
+                cinema experience.
+            </p>
+
+            <a href="movies.html">
+
+                <button class="hero-button">
+                    Browse Movies
+                </button>
+
+            </a>
+
+        </div>
+
+    </section>
 
 
-<section class="hero">
+    <!-- =========================
+         LOGIN SECTION
+    ========================== -->
 
-    <div class="hero-content">
+    <section class="login-section" id="login">
 
-        <span class="tag">
-            MOVIE TICKET BOOKING
-        </span>
+        <div class="login-card">
 
-        <h1>
-            Welcome to CineMax
-        </h1>
+            <h2>
+                Welcome Back
+            </h2>
+
+            <p class="subtitle">
+                Login to continue booking your tickets
+            </p>
+
+
+            <!-- LOGIN FORM -->
+
+            <form id="loginForm" action="login.php" method="POST">
+
+                <!-- EMAIL -->
+
+                <div class="input-group">
+
+                    <label for="login-email">
+                        Email
+                    </label>
+
+                    <input
+                        type="email"
+                        id="login-email"
+                        name="email"
+                        placeholder="Enter your email"
+                        required
+                    >
+
+                    <small
+                        id="loginEmailError"
+                        class="error-message">
+                    </small>
+
+                </div>
+
+
+                <!-- PASSWORD -->
+
+                <div class="input-group">
+
+                    <label for="login-password">
+                        Password
+                    </label>
+
+                    <input
+                        type="password"
+                        id="login-password"
+                        name="password"
+                        placeholder="Enter your password"
+                        required
+                    >
+
+                    <small
+                        id="loginPasswordError"
+                        class="error-message">
+                    </small>
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="login-button">
+
+                    Login
+
+                </button>
+
+            </form>
+
+
+            <!-- DIVIDER -->
+
+            <div class="divider">
+
+                <span>
+                    OR
+                </span>
+
+            </div>
+
+
+            <!-- REGISTER BUTTON -->
+
+            <button
+                type="button"
+                class="register-button"
+                onclick="showRegister()">
+
+                Create New Account
+
+            </button>
+
+
+            <!-- =========================
+                 REGISTER FORM
+            ========================== -->
+
+            <div
+                id="register-box"
+                class="register-box">
+
+                <h3>
+                    Create Account
+                </h3>
+
+
+                <form
+                    id="registerForm"
+                    action="register.php"
+                    method="POST">
+
+
+                    <!-- NAME -->
+
+                    <div class="input-group">
+
+                        <label for="name">
+                            Full Name
+                        </label>
+
+                        <input
+                            type="text"
+                            id="name"
+                            name="name"
+                            placeholder="Enter your name"
+                            required
+                        >
+
+                        <small
+                            id="nameError"
+                            class="error-message">
+                        </small>
+
+                    </div>
+
+
+                    <!-- EMAIL -->
+
+                    <div class="input-group">
+
+                        <label for="register-email">
+                            Email
+                        </label>
+
+                        <input
+                            type="email"
+                            id="register-email"
+                            name="email"
+                            placeholder="Enter your email"
+                            required
+                        >
+
+                        <small
+                            id="registerEmailError"
+                            class="error-message">
+                        </small>
+
+                    </div>
+
+
+                    <!-- PASSWORD -->
+
+                    <div class="input-group">
+
+                        <label for="register-password">
+                            Password
+                        </label>
+
+                        <input
+                            type="password"
+                            id="register-password"
+                            name="password"
+                            placeholder="Create a password"
+                            required
+                        >
+
+                        <small
+                            id="registerPasswordError"
+                            class="error-message">
+                        </small>
+
+                    </div>
+
+
+                    <button
+                        type="submit"
+                        class="login-button">
+
+                        Create Account
+
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <footer>
 
         <p>
-            Book your favourite movies,
-            select your seats and enjoy your show.
+            © 2026 CINEMAX.
+            All Rights Reserved.
         </p>
 
-        <a href="movies.html" class="btn">
-            View Movies
-        </a>
-
-    </div>
-
-</section>
+    </footer>
 
 
-<section class="auth-section">
+    <!-- =========================
+         JAVASCRIPT VALIDATION
+    ========================== -->
 
-    <!-- LOGIN -->
+    <script>
 
-    <div class="card">
+        // =========================
+        // SHOW REGISTER FORM
+        // =========================
 
-        <h2>Login</h2>
+        function showRegister() {
 
-        <form id="loginForm" method="post">
+            const registerBox =
+                document.getElementById("register-box");
 
-            <input
-                type="text"
-                name="username"
-                placeholder="Username"
-                required
-            >
+            if (registerBox.style.display === "block") {
 
-            <input
-                type="password"
-                name="password"
-                placeholder="Password"
-                required
-            >
+                registerBox.style.display = "none";
 
-            <button
-                type="submit"
-                class="btn full">
+            } else {
 
-                Login
+                registerBox.style.display = "block";
 
-            </button>
+            }
 
-        </form>
-
-        <p id="loginMsg" class="message"></p>
-
-    </div>
+        }
 
 
-    <!-- REGISTER -->
+        // =========================
+        // NAME VALIDATION
+        // =========================
 
-    <div class="card">
+        function validateName(name) {
 
-        <h2>Create New Account</h2>
+            const namePattern =
+                /^[A-Za-z ]+$/;
 
-        <form id="registerForm" method="post">
+            return namePattern.test(name);
 
-            <input
-                type="text"
-                name="name"
-                placeholder="Full Name"
-                required
-            >
-
-            <input
-                type="text"
-                name="username"
-                placeholder="Username"
-                required
-            >
-
-            <input
-                type="email"
-                name="email"
-                placeholder="Email"
-                required
-            >
-
-            <input
-                type="password"
-                name="password"
-                placeholder="Password"
-                minlength="6"
-                required
-            >
-
-            <input
-                type="password"
-                name="confirmPassword"
-                placeholder="Confirm Password"
-                minlength="6"
-                required
-            >
-
-            <button
-                type="submit"
-                class="btn full">
-
-                Create Account
-
-            </button>
-
-        </form>
-
-        <p id="registerMsg" class="message"></p>
-
-    </div>
-
-</section>
+        }
 
 
-<section class="features">
+        // =========================
+        // EMAIL VALIDATION
+        // =========================
 
-    <h2>Why Choose CineMax?</h2>
+        function validateEmail(email) {
 
-    <div class="feature-grid">
+            const emailPattern =
+                /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-        <div class="feature">
+            return emailPattern.test(email);
 
-            <h3>🎬 Movies</h3>
-
-            <p>
-                Movie details are retrieved
-                from MySQL database.
-            </p>
-
-        </div>
+        }
 
 
-        <div class="feature">
+        // =========================
+        // PASSWORD VALIDATION
+        // =========================
 
-            <h3>💺 Seats</h3>
+        function validatePassword(password) {
 
-            <p>
-                Select available seats
-                for your movie.
-            </p>
+            return password.length >= 6;
 
-        </div>
-
-
-        <div class="feature">
-
-            <h3>🗄️ Database</h3>
-
-            <p>
-                User and booking details
-                are stored in MySQL.
-            </p>
-
-        </div>
-
-    </div>
-
-</section>
+        }
 
 
-<footer>
-    © 2026 CineMax Movie Booking
-</footer>
+        // =========================
+        // NAME - LIVE VALIDATION
+        // =========================
+
+        document
+            .getElementById("name")
+            .addEventListener(
+                "input",
+                function() {
+
+                    // Allow letters and spaces only
+                    this.value =
+                        this.value.replace(
+                            /[^A-Za-z ]/g,
+                            ""
+                        );
+
+                    const name =
+                        this.value;
+
+                    const error =
+                        document.getElementById(
+                            "nameError"
+                        );
+
+                    if (
+                        name !== "" &&
+                        !validateName(name)
+                    ) {
+
+                        error.textContent =
+                            "Name can contain letters and spaces only.";
+
+                    } else {
+
+                        error.textContent = "";
+
+                    }
+
+                }
+            );
 
 
-<script src="script.js"></script>
+        // =========================
+        // REGISTER FORM
+        // =========================
+
+        document
+            .getElementById("registerForm")
+            .addEventListener(
+                "submit",
+                function(event) {
+
+                    const name =
+                        document
+                            .getElementById("name")
+                            .value
+                            .trim();
+
+                    const email =
+                        document
+                            .getElementById("register-email")
+                            .value
+                            .trim();
+
+                    const password =
+                        document
+                            .getElementById("register-password")
+                            .value;
+
+
+                    let valid = true;
+
+
+                    // NAME
+
+                    if (!validateName(name)) {
+
+                        document
+                            .getElementById("nameError")
+                            .textContent =
+                            "Enter a valid name using letters and spaces only.";
+
+                        valid = false;
+
+                    } else {
+
+                        document
+                            .getElementById("nameError")
+                            .textContent = "";
+
+                    }
+
+
+                    // EMAIL
+
+                    if (!validateEmail(email)) {
+
+                        document
+                            .getElementById("registerEmailError")
+                            .textContent =
+                            "Enter a valid email address.";
+
+                        valid = false;
+
+                    } else {
+
+                        document
+                            .getElementById("registerEmailError")
+                            .textContent = "";
+
+                    }
+
+
+                    // PASSWORD
+
+                    if (!validatePassword(password)) {
+
+                        document
+                            .getElementById("registerPasswordError")
+                            .textContent =
+                            "Password must contain at least 6 characters.";
+
+                        valid = false;
+
+                    } else {
+
+                        document
+                            .getElementById("registerPasswordError")
+                            .textContent = "";
+
+                    }
+
+
+                    // STOP FORM IF INVALID
+
+                    if (!valid) {
+
+                        event.preventDefault();
+
+                    }
+
+                }
+            );
+
+
+        // =========================
+        // LOGIN FORM
+        // =========================
+
+        document
+            .getElementById("loginForm")
+            .addEventListener(
+                "submit",
+                function(event) {
+
+                    const email =
+                        document
+                            .getElementById("login-email")
+                            .value
+                            .trim();
+
+                    const password =
+                        document
+                            .getElementById("login-password")
+                            .value;
+
+
+                    let valid = true;
+
+
+                    // EMAIL
+
+                    if (!validateEmail(email)) {
+
+                        document
+                            .getElementById("loginEmailError")
+                            .textContent =
+                            "Enter a valid email address.";
+
+                        valid = false;
+
+                    } else {
+
+                        document
+                            .getElementById("loginEmailError")
+                            .textContent = "";
+
+                    }
+
+
+                    // PASSWORD
+
+                    if (!validatePassword(password)) {
+
+                        document
+                            .getElementById("loginPasswordError")
+                            .textContent =
+                            "Password must contain at least 6 characters.";
+
+                        valid = false;
+
+                    } else {
+
+                        document
+                            .getElementById("loginPasswordError")
+                            .textContent = "";
+
+                    }
+
+
+                    // STOP LOGIN IF INVALID
+
+                    if (!valid) {
+
+                        event.preventDefault();
+
+                    }
+
+                }
+            );
+
+    </script>
 
 </body>
+
 </html>

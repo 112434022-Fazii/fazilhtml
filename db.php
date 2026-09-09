@@ -1,27 +1,9 @@
 <?php
 
-session_start();
-
-$conn = mysqli_connect(
-    "localhost",
-    "root",
-    "",
-    "cinemax"
-);
+$conn = mysqli_connect("localhost", "root", "", "cinemax");
 
 if (!$conn) {
-
-    echo json_encode([
-        "success" => false,
-        "message" => "Database connection failed"
-    ]);
-
-    exit;
+    die("Database connection failed: " . mysqli_connect_error());
 }
-
-mysqli_set_charset(
-    $conn,
-    "utf8mb4"
-);
 
 ?>
